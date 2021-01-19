@@ -1,0 +1,37 @@
+.hidden{
+  display: none;
+}
+.date_boxes{
+    display:inline-block;
+}
+.reaction-images{
+    width:5%;
+}
+#dates-div{
+    margin-top:20px;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center
+}
+.date-results-div>h2{
+    margin:0;
+}
+
+#from-results-div{
+    margin-right:20px;
+    width:40%;
+    flex-direction:row;
+}
+#to-results-div{
+    margin-left:20px;
+    width:40%;
+    flex-direction:row;
+}
+#total-results{
+    margin:0 auto;
+    width:80%;
+}
+.results-div{
+    width:100%;
+}
