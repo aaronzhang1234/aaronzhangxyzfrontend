@@ -29,7 +29,7 @@ class FOMO extends Component {
   }
   async getStock(){ 
     let stock_data = {};
-    let stock_response = await axios.get(config.config.backend_url+"GetStockData?"+this.state.ticker).catch((err)=>{
+    let stock_response = await axios.get(config.config.backend_url+"getStockData?ticker="+this.state.ticker).catch((err)=>{
       this.setState({
         av_error:true
       });
