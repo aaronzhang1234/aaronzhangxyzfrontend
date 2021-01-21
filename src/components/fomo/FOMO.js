@@ -11,6 +11,7 @@ import Results from './Results.js'
 import SearchBar from './SearchBar.js'
 import MoneyBar from './MoneyBar.js'
 import '../../css/App.css';
+import config from '../../config.js'
 
 class FOMO extends Component {
   constructor(props){
@@ -28,15 +29,13 @@ class FOMO extends Component {
   }
   async getStock(){ 
     let stock_data = {};
-    let stock_response = await axios.get("http://localhost:5000/getStockData?ticker="+this.state.ticker).catch((err)=>{
-      console.log(err);
+    let stock_response = await axios.get(config.config.backend_url+"GetStockData?"+this.state.ticker).catch((err)=>{
       this.setState({
         av_error:true
       });
     })
 
     stock_data = stock_response.data
-    console.log(stock_response.data)
     this.setState({
       stock_data:stock_data
     })
@@ -100,7 +99,6 @@ class FOMO extends Component {
       this.setState({
         show_input:false
       });
-      console.log("submitted");      
   }
   getTicker=(ticker)=>{
     this.setState({

@@ -70,7 +70,6 @@ class Results extends Component{
             let rounded_price = Math.floor(price*100)/100;
             let price_formatted = accounting.formatMoney(rounded_price);
 
-            console.log(date);
             let human_readable_date = moment(date["date"]).format("MMMM Do YYYY");
 
             return(
@@ -108,7 +107,6 @@ class Results extends Component{
             if(from_price> to_price){
                 gain_loss = "loss";
                 percentage_change = Math.round(((to_price - from_price)/from_price)*100);
-                console.log(percentage_change);
                 if (percentage_change<=-70){reaction_image = face_screaming};
                 if (percentage_change>-70){reaction_image = loudly_crying};
                 if (percentage_change>-50){reaction_image = fear_full};
