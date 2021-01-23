@@ -2,13 +2,11 @@ import React,{Component} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
-import axios from 'axios';
 import HomePage from './components/HomePage.js'
 import FOMO from './components/fomo/FOMO.js'
-import './css/App.css';
+import './css/FOMO.css';
 
 class App extends Component {
   constructor(props){

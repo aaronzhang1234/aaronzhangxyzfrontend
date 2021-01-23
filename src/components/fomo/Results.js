@@ -178,7 +178,7 @@ class Results extends Component{
                     />
                 </div>
                 <h1 className={this.props.av_error?"":"hidden"}>
-                    Error getting stock data
+                    Error getting stock data. Make sure to input a valid ticker.
                 </h1>
             </React.Fragment>
         )

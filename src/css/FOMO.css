@@ -34,3 +34,7 @@
 .results-div{
   width:100%;
 }
+#tickerInput{
+  text-align:center;
+  font-size:3em;
+}
