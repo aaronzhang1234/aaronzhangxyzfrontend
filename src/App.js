@@ -4,8 +4,8 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import HomePage from './components/HomePage.js'
-import FOMO from './components/fomo/FOMO.js'
+import HomePage from './components/HomePage.js';
+import FOMO from './components/fomo/FOMO.js';
 import './css/FOMO.css';
 
 class App extends Component {
