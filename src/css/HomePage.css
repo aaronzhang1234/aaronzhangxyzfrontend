@@ -1,9 +1,9 @@
 body{
-    background-color:#FDF5E6;
+    background-color:#d4ebf2;
 }
 fieldset{
     display:inline-block;
-    background-color:#A9A9A9;
+    background-color:#99ade0;
     outline-color:black;
     border: 6px solid;
 }
@@ -11,7 +11,7 @@ legend{
     color:black;
     font-family: 'Ubuntu', sans-serif;
     font-size:1.3em;
-    background-color:#A9A9A9;
+    background-color:#99ade0;
     outline-style:solid;
     outline-color:black;
     border: 1.5px solid;
@@ -58,19 +58,7 @@ h2#byline{
     h2#email, h2#byline{
         font-size:1em;
     }
-    img.inline_img{
-        height:.5em;
-    }
 }
-img.inline_img{
-    width:auto;
-    height:1em;
-}
-img.promo_img{
-    width:auto;
-    height:3em;
-}
-
 .row:after{
     content:"";
     display:table;
@@ -82,5 +70,14 @@ li{
 
 div#header{
     margin-left:2vw;
+}
+.FourOFourText{
+    text-align: center;
+}
+#FourOFourImage{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    width:25%;
 }
 
