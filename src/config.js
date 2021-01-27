@@ -2,7 +2,7 @@ const dev={
     backend_url:"http://localhost:5000/"
 }
 const prod={
-    backend_url:"http://aaronzhang.xyz:4000/"
+    backend_url:"https://aaronzhang.xyz:4000/"
 }
 
 const config = process.env.REACT_APP_STAGE==="prod"
