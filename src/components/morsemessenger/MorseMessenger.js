@@ -10,7 +10,6 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import config from '../../config.js';
 import download from '../../imgs/morsemessenger/download.png'
-import james from '../../imgs/morsemessenger/james.jpg'
 
 
 const useStyles = theme =>({
@@ -31,6 +30,14 @@ const useStyles = theme =>({
         height:"75px",
         backgroundColor:"#d4ebf2",
         borderRadius:"40px"
+    },
+    'tryitout:visited':{
+        textDecoration: "none",
+        color:"black"
+    },
+    tryitout:{
+        textDecoration: "none",
+        color:"black"
     },
     buttonCenteredText:{
         textAlign:"center",
@@ -96,7 +103,7 @@ class MorseMessenger extends Component {
                     </Box>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} align="center">
-                    <a href="#tryitout">
+                    <a href="#tryitout" className={classes.tryitout}>
                         <Box className={classes.oval}>
                             <h1 className={classes.buttonCenteredText}>Try Now</h1>
                         </Box>
@@ -171,23 +178,19 @@ class MorseMessenger extends Component {
                 </Grid>
             </Grid>
             <Grid id="tryitout" className={classes.whiteGrid} alignItems="center" justify="center" container>
-                <Grid item xs={12}   align="center">
+                <Grid item xs={12} align="center">
                     <fieldset style={{width:"50%"}}>
                         <legend style={{textAlign:"center"}}>Start Your Morses!</legend>
                         <form onSubmit={this.handleSubmit}>
                             <Box style={{display:"flex"}} m={2}>
                                 <h3 style={{margin:"0"}}>Channel: </h3>
-                                <input id="channelInput" 
-                                type="text" 
-                                onChange={this.setChannel} 
-                                value={this.state.channel}/>
+                                <input id="channelInput" type="text" 
+                                onChange={this.setChannel} value={this.state.channel}/>
                             </Box>
                             <Box style={{display:"flex"}} m={2}>
                                 <h3 style={{margin:"0"}}>Message: </h3>
-                                <input id="messageInput" 
-                                type="text" 
-                                onChange={this.setMessage} 
-                                value={this.state.message}/>
+                                <input id="messageInput" type="text" 
+                                onChange={this.setMessage} value={this.state.message}/>
                             </Box>
                             <Button type="submit" variant="contained" color="primary">Send a Morse Message</Button>
                         </form>
