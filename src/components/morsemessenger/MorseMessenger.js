@@ -9,6 +9,8 @@ import FlashOnIcon from '@material-ui/icons/FlashOn';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import config from '../../config.js';
+import download from '../../imgs/morsemessenger/download.png'
+import james from '../../imgs/morsemessenger/james.jpg'
 
 
 const useStyles = theme =>({
@@ -42,6 +44,33 @@ const useStyles = theme =>({
     },
     titleExplainer:{
         fontSize:"20px",
+    },
+    stepBox:{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    stepNumber:{
+        fontSize:"200px",
+        opacity:"0.5",
+        margin:0,
+        zIndex:1
+    },
+    stepInstructionRight:{
+        height:"50%",
+        marginRight:"-100px",
+        textAlign:"right",
+        fontSize:"35px",
+        fontWeight:"bold",
+        zIndex:2
+    },
+    stepInstructionLeft:{
+        height:"50%",
+        marginLeft:"-100px",
+        textAlign:"left",
+        fontSize:"35px",
+        fontWeight:"bold",
+        zIndex:2
     }
 
 });
@@ -104,21 +133,44 @@ class MorseMessenger extends Component {
                     </Box>
                 </Grid>
             </Grid>
-            <Grid className={classes.whiteGrid} justify="center" container>
-                <Grid item xs={12}   align="center">
+            <Grid className={classes.whiteGrid} justify="center" alignItems="center" container>
+                <Grid item xs={12} align="center">
                     <h1 style={{fontSize:"75px"}}>How Does It Work?</h1>
                     <Divider style={{width:"50%"}}variant="middle"/>
                 </Grid>
             </Grid>
-            <Grid className={classes.blueGrid} justify="center" container>
+            <Grid className={classes.blueGrid} justify="center" alignItems="center" container>
+                    <Grid item xs={6} sm={5} md={4} align="center">
+                        <Box className={classes.stepBox}>
+                            <h1 className={classes.stepNumber}>1</h1>
+                            <p className={classes.stepInstructionLeft}>Download the Morse Messenger app on the Apple App store.</p>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={6} sm={5} md={4} align="center">
+                        <img style={{width:"50%"}}src={download}/>
+                    </Grid>
             </Grid>
             <Grid className={classes.whiteGrid} justify="center" container>
+                <Grid item xs={6} sm={5} md={4} align="center">
+                </Grid>
+                <Grid item xs={6} sm={5} md={4} align="center">
+                    <Box className={classes.stepBox}>
+                        <p className={classes.stepInstructionRight}>Join a Channel on the app.</p>
+                        <h1 className={classes.stepNumber}>2</h1>
+                    </Box>
+                </Grid>
             </Grid>
             <Grid className={classes.blueGrid} justify="center" container>
+                <Grid item xs={6} sm={5} md={4} align="center">
+                    <Box className={classes.stepBox}>
+                        <h1 className={classes.stepNumber}>3</h1>
+                        <p className={classes.stepInstructionLeft}>Send a message with the same channel and on this website.</p>
+                    </Box>
+                </Grid>
+                <Grid item xs={6} sm={5} md={4} align="center">
+                </Grid>
             </Grid>
-            <Grid className={classes.whiteGrid} justify="center" container>
-            </Grid>
-            <Grid id="tryitout" className={classes.blueGrid} alignItems="center" justify="center" container>
+            <Grid id="tryitout" className={classes.whiteGrid} alignItems="center" justify="center" container>
                 <Grid item xs={12}   align="center">
                     <fieldset style={{width:"50%"}}>
                         <legend style={{textAlign:"center"}}>Start Your Morses!</legend>
@@ -140,6 +192,11 @@ class MorseMessenger extends Component {
                             <Button type="submit" variant="contained" color="primary">Send a Morse Message</Button>
                         </form>
                     </fieldset>
+                </Grid>
+            </Grid>
+            <Grid alignItems="center" justify="center" container>
+                <Grid item xs={12} align="center">
+                    <h2>Design By James Haggarty</h2>
                 </Grid>
             </Grid>
       </React.Fragment>
