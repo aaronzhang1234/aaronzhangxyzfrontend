@@ -8,6 +8,7 @@ import {
 import HomePage from './components/HomePage.js';
 import FOMO from './components/fomo/FOMO.js';
 import FourOFour from './components/FourOFour.js'
+import MorseMessenger from './components/morsemessenger/MorseMessenger.js'
 import './css/FOMO.css';
 
 class App extends Component {
@@ -18,10 +19,13 @@ class App extends Component {
     return(
          <Router>
           <Switch>
+            <Route exact path="/morsemessenger">
+              <MorseMessenger/>
+            </Route>
             <Route exact path="/404">
               <FourOFour/>
             </Route>
-            <Route exact path="/FOMO">
+            <Route exact path="/fomo">
               <FOMO/>
             </Route>
             <Route exact path="/">

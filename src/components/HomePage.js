@@ -23,9 +23,9 @@ class HomePage extends Component {
             <fieldset class="columns">
                 <legend>Side Projects</legend>
                 <ul>
-                    <li><a class="links" href="http://morsemessenger.com">Morse Messenger, Discrete Messaging</a> <a href="https://github.com/aaronzhang1234/morsemessenger"><GitHubIcon fontSize="small"/></a></li>
+                    <li><a class="links" href="/morsemessenger">Morse Messenger, Discrete Messaging</a> <a href="https://github.com/aaronzhang1234/morsemessenger"><GitHubIcon fontSize="small"/></a></li>
                     <li><a class="links" href="https://bit.ly/2YagH0o">Bring Back Old Messenger Emojis</a> <a href="https://github.com/aaronzhang1234/bringbackmessengeremojis"><GitHubIcon fontSize="small"/></a></li>
-                    <li><a class="links" href="/FOMO">FOMO, See what you missed out!</a></li>
+                    <li><a class="links" href="/fomo">FOMO, See what you missed out!</a></li>
               </ul> 
             </fieldset>
         </div>
