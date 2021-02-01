@@ -3,6 +3,8 @@ import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import WifiIcon from '@material-ui/icons/Wifi';
 import LockIcon from '@material-ui/icons/Lock';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
@@ -10,10 +12,12 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import config from '../../config.js';
 import download from '../../imgs/morsemessenger/download.png'
+import TextField from '@material-ui/core/TextField';
 
 
 const useStyles = theme =>({
     blueGrid:{
+        backgroundColor:"#d4ebf2",
         minHeight:"250px",
         maxHeight:"100%"
     },
@@ -78,6 +82,10 @@ const useStyles = theme =>({
         fontSize:"35px",
         fontWeight:"bold",
         zIndex:2
+    },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
     }
 
 });
@@ -87,7 +95,9 @@ class MorseMessenger extends Component {
         super(props)
         this.state = {
             channel:"",
-            message:""
+            message:"",
+            isLoading: false,
+            error: false
         }
   }
   
@@ -180,19 +190,19 @@ class MorseMessenger extends Component {
             <Grid id="tryitout" className={classes.whiteGrid} alignItems="center" justify="center" container>
                 <Grid item xs={12} align="center">
                     <fieldset style={{width:"50%"}}>
-                        <legend style={{textAlign:"center"}}>Start Your Morses!</legend>
                         <form onSubmit={this.handleSubmit}>
                             <Box style={{display:"flex"}} m={2}>
-                                <h3 style={{margin:"0"}}>Channel: </h3>
-                                <input id="channelInput" type="text" 
-                                onChange={this.setChannel} value={this.state.channel}/>
+                                <Grid alignItems="center" justify="center" container>
+                                    <Grid item xs={6} sm={5} md={4}>
+                                        <TextField required id="channelInput" label="Channel" variant="filled" />
+                                    </Grid>
+                                    <Grid item xs={6} sm={5} md={4}>
+                                         <TextField required id="identifierInput" label="Identifier" variant="filled" />
+                                    </Grid>
+                                </Grid>
                             </Box>
-                            <Box style={{display:"flex"}} m={2}>
-                                <h3 style={{margin:"0"}}>Message: </h3>
-                                <input id="messageInput" type="text" 
-                                onChange={this.setMessage} value={this.state.message}/>
-                            </Box>
-                            <Button type="submit" variant="contained" color="primary">Send a Morse Message</Button>
+                            <TextField style={{width:"50%"}}required id="messageInput" label="Message" variant="filled" fullWidth />
+                            <Button style={{display:"block", marginTop:"10px"}}type="submit" variant="contained" color="primary">Send a Morse Message</Button>
                         </form>
                     </fieldset>
                 </Grid>
@@ -202,31 +212,49 @@ class MorseMessenger extends Component {
                     <h2>Design By James Haggarty</h2>
                 </Grid>
             </Grid>
+            <Backdrop className={classes.backdrop} open={this.state.isLoading}>
+                <Box>
+                    <h1>Sending Morses</h1>
+                </Box>
+                <CircularProgress color="inherit" />
+            </Backdrop>
       </React.Fragment>
     );
   }
   handleSubmit=(event)=>{
-      event.preventDefault();
+      this.setState({
+          isLoading:true
+      })
 
-      axios.get(config.config.backend_url+"sendMorse?channel="+this.state.channel +"&message="+this.state.message)
+      event.preventDefault();
+      let channel = event.target["channelInput"].value
+      let identifier = event.target["identifierInput"].value
+      let message= event.target["messageInput"].value
+
+      axios.get(config.config.backend_url+"sendMorse?channel="+channel +"&identifier="+identifier+"&message="+message)
       .then((morse_response)=>{
-            console.log(morse_response)
+          console.log(morse_response)
+          this.setState({
+              channel:"",
+              message:"",
+              isLoading:false
+          })
       })
       .catch((err)=>{
           console.log(err)
+          switch(err.response.status){
+              case 400:
+                  console.log("invalid parameters")
+              case 429:
+                  console.log("too many requests")
+          }
+          this.setState({
+              channel:"",
+              message:"",
+              isLoading:false
+          })
       })
   }
-  setChannel=(event)=>{
-    this.setState({
-      channel:event.target.value
-    })
-  }
-  setMessage=(event)=>{
-    this.setState({
-      message:event.target.value
-    })
-  }
-
 }
 
 export default withStyles(useStyles)(MorseMessenger);
