@@ -31,8 +31,8 @@ class Results extends Component{
         let important_dates= {};
         let stock_data = this.props.stock_data;
         let dates = Object.keys(stock_data);
-        important_dates["IPO"] = this.convert_string_to_date(dates[0]);
-        important_dates["CURRENT"] = this.convert_string_to_date(dates[dates.length-1]);
+        important_dates["IPO"] = this.convert_string_to_date(dates[dates.length-1]);
+        important_dates["CURRENT"] = this.convert_string_to_date(dates[0]);
         
         important_dates["HIGHEST"] = this.convert_string_to_date(this.getExtremes(1));
         important_dates["LOWEST"] = this.convert_string_to_date(this.getExtremes(0));
@@ -50,7 +50,7 @@ class Results extends Component{
         let dates = Object.keys(stock_data);
         if(after_date){
             let after_index = this.findDateIndex(after_date);
-            dates = dates.slice(after_index, dates.length-1);
+            dates = dates.slice(0,after_index);
         }
         let extreme_stock_price = type>0?Math.max.apply(null, dates.map(function(x){return stock_data[x]})):
                                          Math.min.apply(null, dates.map(function(x){return stock_data[x]}));

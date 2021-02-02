@@ -29,7 +29,7 @@ class FOMO extends Component {
     let stock_data = {};
     await axios.get(config.config.backend_url+"getStockData?ticker="+this.state.ticker)
      .then((stock_response)=>{
-      stock_data = stock_response.data
+      stock_data = JSON.parse(stock_response.data.response)
       this.setState({
         stock_data:stock_data
       })
