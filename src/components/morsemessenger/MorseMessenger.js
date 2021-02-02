@@ -10,10 +10,12 @@ import LockIcon from '@material-ui/icons/Lock';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 import config from '../../config.js';
 import download from '../../imgs/morsemessenger/download.png'
+import send from '../../imgs/morsemessenger/send.png'
+import group from '../../imgs/morsemessenger/group.png'
 import TextField from '@material-ui/core/TextField';
-
 
 const useStyles = theme =>({
     blueGrid:{
@@ -83,6 +85,14 @@ const useStyles = theme =>({
         fontWeight:"bold",
         zIndex:2
     },
+    errorBox:{
+        width:"50%",
+        backgroundColor:"red"
+    },
+    successBox:{
+        width:"50%",
+        backgroundColor:"#d4ebf2"
+    },
     backdrop: {
         zIndex: theme.zIndex.drawer + 1,
         color: '#fff',
@@ -94,15 +104,18 @@ class MorseMessenger extends Component {
   constructor(props){
         super(props)
         this.state = {
+            response_message:"",
             channel:"",
             message:"",
+            error:false,
             isLoading: false,
-            error: false
+            message_sent: false
         }
   }
   
   render(){
       const {classes} = this.props;
+      const {error, response_message, message_sent} = this.state; 
     return(
       <React.Fragment>
             <Grid className={classes.whiteGrid} justify="center" alignItems="center" container>
@@ -164,11 +177,12 @@ class MorseMessenger extends Component {
                         </Box>
                     </Grid>
                     <Grid item xs={6} sm={5} md={4} align="center">
-                        <img style={{width:"50%"}}src={download}/>
+                        <img style={{width:"40%"}}src={download}/>
                     </Grid>
             </Grid>
-            <Grid className={classes.whiteGrid} justify="center" container>
+            <Grid className={classes.whiteGrid} alignItems="center" justify="center" container>
                 <Grid item xs={6} sm={5} md={4} align="center">
+                    <img style={{width:"40%"}} src={group}/>
                 </Grid>
                 <Grid item xs={6} sm={5} md={4} align="center">
                     <Box className={classes.stepBox}>
@@ -177,18 +191,24 @@ class MorseMessenger extends Component {
                     </Box>
                 </Grid>
             </Grid>
-            <Grid className={classes.blueGrid} justify="center" container>
+            <Grid className={classes.blueGrid} justify="center" alignItems="center" container>
                 <Grid item xs={6} sm={5} md={4} align="center">
                     <Box className={classes.stepBox}>
                         <h1 className={classes.stepNumber}>3</h1>
-                        <p className={classes.stepInstructionLeft}>Send a message with the same channel and on this website.</p>
+                        <p className={classes.stepInstructionLeft}>Send a message on this website with the same channel</p>
                     </Box>
                 </Grid>
                 <Grid item xs={6} sm={5} md={4} align="center">
+                    <img style={{width:"60%"}} src={send}/>
                 </Grid>
             </Grid>
             <Grid id="tryitout" className={classes.whiteGrid} alignItems="center" justify="center" container>
                 <Grid item xs={12} align="center">
+                    {message_sent &&(
+                        <Box className={error?classes.errorBox : classes.successBox}>
+                           <h1>{response_message}</h1> 
+                        </Box>
+                    )}
                     <fieldset style={{width:"50%"}}>
                         <form onSubmit={this.handleSubmit}>
                             <Box style={{display:"flex"}} m={2}>
@@ -202,14 +222,14 @@ class MorseMessenger extends Component {
                                 </Grid>
                             </Box>
                             <TextField style={{width:"50%"}}required id="messageInput" label="Message" variant="filled" fullWidth />
-                            <Button style={{display:"block", marginTop:"10px"}}type="submit" variant="contained" color="primary">Send a Morse Message</Button>
+                            <Button style={{display:"block", marginTop:"10px"}}type="submit" variant="contained" color="primary" endIcon={<Icon>send</Icon>}>Send a Morse Message</Button>
                         </form>
                     </fieldset>
                 </Grid>
             </Grid>
             <Grid alignItems="center" justify="center" container>
                 <Grid item xs={12} align="center">
-                    <h2>Design By James Haggarty</h2>
+                    <h4>Design By James Haggarty</h4>
                 </Grid>
             </Grid>
             <Backdrop className={classes.backdrop} open={this.state.isLoading}>
@@ -235,20 +255,34 @@ class MorseMessenger extends Component {
       .then((morse_response)=>{
           console.log(morse_response)
           this.setState({
+              message_sent:true,
+              error:false,
+              response_message:"Success, your message has been sent!",
               channel:"",
               message:"",
               isLoading:false
           })
       })
       .catch((err)=>{
-          console.log(err)
-          switch(err.response.status){
-              case 400:
-                  console.log("invalid parameters")
-              case 429:
-                  console.log("too many requests")
+          let response_message = ""
+          if(err.response == null){
+           response_message = "An unexpected error has occurred" 
+          }else{
+            switch(err.response.data.status_code){
+                case 400:
+                    response_message = err.response.data.response
+                    break;
+                case 429:
+                    response_message = "Hold your Morses buddy. You've been rate limited. Try again later."
+                    break;
+                default:
+                    response_message = "An unexpected error has occured"
+            }
           }
           this.setState({
+              message_sent:true,
+              error:true,
+              response_message:response_message,
               channel:"",
               message:"",
               isLoading:false
