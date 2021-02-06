@@ -1,9 +1,9 @@
 body{
-    background-color:#d4ebf2;
+    background-color:white;
 }
 fieldset{
     display:inline-block;
-    background-color:#99ade0;
+    background-color:#d4ebf2;
     outline-color:black;
     border: 6px solid;
 }
@@ -11,7 +11,7 @@ legend{
     color:black;
     font-family: 'Ubuntu', sans-serif;
     font-size:1.3em;
-    background-color:#99ade0;
+    background-color:#d4ebf2;
     outline-style:solid;
     outline-color:black;
     border: 1.5px solid;
