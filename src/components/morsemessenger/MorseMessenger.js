@@ -16,15 +16,26 @@ import download from '../../imgs/morsemessenger/download.png'
 import send from '../../imgs/morsemessenger/send.png'
 import group from '../../imgs/morsemessenger/group.png'
 import TextField from '@material-ui/core/TextField';
+import Header from '../Header'
 
 const useStyles = theme =>({
-    blueGrid:{
+    firstGrid:{
+        backgroundColor:'white',
+        minHeight:"250px",
+        maxHeight:"100%"
+    },
+    darkFirstGrid:{
+        backgroundColor:"rgb(24, 26, 27)",
+        minHeight:"250px",
+        maxHeight:"100%"
+    },
+    secondGrid:{
         backgroundColor:"#d4ebf2",
         minHeight:"250px",
         maxHeight:"100%"
     },
-    whiteGrid:{
-        backgroundColor:'white',
+    darkSecondGrid:{
+        backgroundColor:"rgb(20, 54, 65)",
         minHeight:"250px",
         maxHeight:"100%"
     },
@@ -97,7 +108,6 @@ const useStyles = theme =>({
         zIndex: theme.zIndex.drawer + 1,
         color: '#fff',
     }
-
 });
 
 class MorseMessenger extends Component {
@@ -109,8 +119,15 @@ class MorseMessenger extends Component {
             message:"",
             error:false,
             isLoading: false,
-            message_sent: false
+            message_sent: false,
+            nightModeChecked:false
         }
+  }
+
+  switchNightMode=(nightModeIndicator)=>{
+    this.setState({
+      nightModeChecked:nightModeIndicator
+    })
   }
   
   render(){
@@ -118,7 +135,10 @@ class MorseMessenger extends Component {
       const {error, response_message, message_sent} = this.state; 
     return(
       <React.Fragment>
-            <Grid className={classes.whiteGrid} justify="center" alignItems="center" container>
+          <Header
+            onSwitchNightMode={this.switchNightMode}
+          />
+            <Grid className={this.state.nightModeChecked?classes.darkFirstGrid:classes.firstGrid} justify="center" alignItems="center" container>
                 <Grid item xs={12} sm={6} md={4} align="center">
                     <Box style={{ width:"50%"}}>
                         <h1 className={classes.titleText}>Morse</h1>
@@ -134,7 +154,7 @@ class MorseMessenger extends Component {
                     <p className={classes.titleExplainer} >Morse Messenger is a revolutionary application which truly tests the limits of online communication by removing the need see and hear</p>
                 </Grid>
             </Grid>
-            <Grid className={classes.blueGrid} justify="center" alignItems="center" container>
+            <Grid className={classes.secondGrid} justify="center" alignItems="center" container>
                 <Grid item xs={12} sm={4} md={3} align="center">
                     <Box style={{display:"flex"}}>
                         <WifiIcon style={{fontSize:"125px"}}/>                        
@@ -163,13 +183,13 @@ class MorseMessenger extends Component {
                     </Box>
                 </Grid>
             </Grid>
-            <Grid className={classes.whiteGrid} justify="center" alignItems="center" container>
+            <Grid className={this.state.nightModeChecked?classes.darkFirstGrid:classes.firstGrid} justify="center" alignItems="center" container>
                 <Grid item xs={12} align="center">
                     <h1 style={{fontSize:"75px"}}>How Does It Work?</h1>
                     <Divider style={{width:"50%"}}variant="middle"/>
                 </Grid>
             </Grid>
-            <Grid className={classes.blueGrid} justify="center" alignItems="center" container>
+            <Grid className={classes.secondGrid} justify="center" alignItems="center" container>
                     <Grid item xs={6} sm={5} md={4} align="center">
                         <Box className={classes.stepBox}>
                             <h1 className={classes.stepNumber}>1</h1>
@@ -180,7 +200,7 @@ class MorseMessenger extends Component {
                         <img style={{width:"40%"}}src={download}/>
                     </Grid>
             </Grid>
-            <Grid className={classes.whiteGrid} alignItems="center" justify="center" container>
+            <Grid className={this.state.nightModeChecked?classes.darkFirstGrid:classes.firstGrid} alignItems="center" justify="center" container>
                 <Grid item xs={6} sm={5} md={4} align="center">
                     <img style={{width:"40%"}} src={group}/>
                 </Grid>
@@ -191,7 +211,7 @@ class MorseMessenger extends Component {
                     </Box>
                 </Grid>
             </Grid>
-            <Grid className={classes.blueGrid} justify="center" alignItems="center" container>
+            <Grid className={classes.secondGrid} justify="center" alignItems="center" container>
                 <Grid item xs={6} sm={5} md={4} align="center">
                     <Box className={classes.stepBox}>
                         <h1 className={classes.stepNumber}>3</h1>
@@ -202,7 +222,7 @@ class MorseMessenger extends Component {
                     <img style={{width:"60%"}} src={send}/>
                 </Grid>
             </Grid>
-            <Grid id="tryitout" className={classes.whiteGrid} alignItems="center" justify="center" container>
+            <Grid id="tryitout" className={this.state.nightModeChecked?classes.darkFirstGrid:classes.firstGrid} alignItems="center" justify="center" container>
                 <Grid item xs={12} align="center">
                     {message_sent &&(
                         <Box className={error?classes.errorBox : classes.successBox}>
