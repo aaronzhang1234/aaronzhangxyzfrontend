@@ -5,6 +5,7 @@ import MoneyBar from './MoneyBar.js'
 import '../../css/FOMO.css';
 import Button from '@material-ui/core/Button';
 import config from '../../config.js';
+import Header from '../Header'
 
 class FOMO extends Component {
   constructor(props){
@@ -44,8 +45,9 @@ class FOMO extends Component {
   render(){
     return(
       <div className="App">
+        <Header/>
         <header className="App-header">
-            <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <div 
            className ={this.state.show_input ? "input_div" : "hidden"}>
             <h1>HOW MUCH IS A</h1>

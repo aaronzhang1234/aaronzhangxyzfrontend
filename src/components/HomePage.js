@@ -1,37 +1,148 @@
 import React,{Component} from 'react';
-import styles from '../css/HomePage.css';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import DescriptionIcon from '@material-ui/icons/Description';
+import Header from './Header'
+
+const useStyles = theme =>({
+  bodyStyle:{
+    height:"100%",
+    display:"flex",
+    flexDirection:"column"
+  },
+  skyStyle:{
+    backgroundColor:"white",
+    paddingBottom:"40px"
+  },
+  nightSkyStyle:{
+    backgroundColor:"rgb(24, 26, 27)",
+    paddingBottom:"40px"    
+  },
+  groundStyle:{
+    backgroundColor:"#d4ebf2",
+    flexGrow:"1"
+  },
+  nightGroundStyle:{
+    backgroundColor:"rgb(20, 54, 65)",
+    flexGrow:"1"
+  },
+  fieldSetHomePage:{
+    marginTop:"20px",
+    display:"inline-block",
+    backgroundColor:"#d4ebf2",
+    marginLeft:"30px",
+    outlineColor:"black",
+    border: "6px solid",
+  },
+  nightFieldSetHomePage:{
+    marginTop:"20px",
+    display:"inline-block",
+    backgroundColor:"rgb(20, 54, 65)",
+    marginLeft:"30px",
+    outlineColor:"white",
+    border: "6px solid",
+  },
+  legendHomePage:{
+    color:"black",
+    fontSize:"1.3em",
+    backgroundColor:"#d4ebf2",
+    outlineStyle:"solid",
+    outlineColor:"black",
+    border:"1.5px solid",
+    padding: ".5em 1em .5em 1em"  
+  },
+  nightLegendHomePage:{
+    color:"white",
+    fontSize:"1.3em",
+    backgroundColor:"rgb(20, 54, 65)",
+    outlineStyle:"solid",
+    outlineColor:"black",
+    border:"1.5px solid",
+    padding: ".5em 1em .5em 1em"  
+  },
+  listItem:{
+    margin:"1em .5em 1em .5em"
+  },
+  links:{
+    color:"black",
+    fontSize:"1.5em",
+  },
+  nightLinks:{
+    color:"white",
+    fontSize:"1.5em",
+  },
+  "links:visited":{
+    color:"white",
+    fontSize:"1.5em",
+  },
+  icons:{
+    color:"black",
+    padding:"0",
+    margin:"0"
+  },
+  nightIcons:{
+    color:"white",
+    padding:"0",
+    margin:"0"
+  },
+  "icons:visited":{
+    color:"white",
+    padding:"0",
+    margin:"0"
+  }
+
+})
 
 class HomePage extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      nightModeChecked:false
+    }
+  }
+  switchNightMode=(nightModeIndicator)=>{
+    this.setState({
+      nightModeChecked:nightModeIndicator
+    })
   }
   
   render(){
+    const {classes} = this.props;
+    let skyStyle = this.state.nightModeChecked?classes.nightSkyStyle:classes.skyStyle
+    let fieldSetHomePageStyle = this.state.nightModeChecked?classes.nightFieldSetHomePage:classes.fieldSetHomePage
+    let legendHomePageStyle = this.state.nightModeChecked?classes.nightLegendHomePage:classes.legendHomePage
+    let linkStyle = this.state.nightModeChecked?classes.nightLinks:classes.links
+    let iconStyle = this.state.nightModeChecked?classes.nightIcons:classes.icons
+    let groundStyle = this.state.nightModeChecked?classes.nightGroundStyle:classes.groundStyle
     return(
       <React.Fragment>
-        <div id="header"> 
-            <h1 id ="title">Aaron Zhang</h1>
-            <h2 id ="email">aaronzhang.xyz@gmail.com</h2>
-            <a href="https://github.com/aaronzhang1234"><GitHubIcon fontSize="large"/></a> 
-            <a href="https://www.linkedin.com/in/aaronzhang1234/"><LinkedInIcon fontSize="large"/></a>
-            <a href={window.location.origin + '/resume.pdf'}><DescriptionIcon fontSize="large"/></a>
-        </div>
-        <div class = "row">
-            <fieldset class="columns">
-                <legend>Side Projects</legend>
-                <ul>
-                    <li><a class="links" href="/morsemessenger">Morse Messenger, Discrete Messaging</a> <a href="https://github.com/aaronzhang1234/morsemessenger"><GitHubIcon fontSize="small"/></a></li>
-                    <li><a class="links" href="https://bit.ly/2YagH0o">Bring Back Old Messenger Emojis</a> <a href="https://github.com/aaronzhang1234/bringbackmessengeremojis"><GitHubIcon fontSize="small"/></a></li>
-                    <li><a class="links" href="/fomo">FOMO, See what you missed out!</a></li>
-              </ul> 
-            </fieldset>
+        <div className={classes.bodyStyle}>
+          <Header
+            onSwitchNightMode={this.switchNightMode}
+          />
+          <Grid className={skyStyle} container>
+            <Grid item md={6} xs={12}>
+              <Box>
+                <fieldset className={fieldSetHomePageStyle}>
+                  <legend className={legendHomePageStyle}>Side Projects</legend>
+                  <ul>
+                      <li className={classes.listItem}><a className= {linkStyle} href="/morsemessenger">Morse Messenger, Discrete Messaging</a> 
+                          <a className= {iconStyle} href="https://github.com/aaronzhang1234/morsemessenger"><GitHubIcon fontSize="small"/></a></li>
+                      <li className={classes.listItem}><a className= {linkStyle} href="https://bit.ly/2YagH0o">Bring Back Old Messenger Emojis</a> 
+                          <a className= {iconStyle} href="https://github.com/aaronzhang1234/bringbackmessengeremojis"><GitHubIcon fontSize="small"/></a></li>
+                      <li className={classes.listItem}><a className= {linkStyle} href="/fomo">FOMO, See what you missed out!</a></li>
+                  </ul> 
+                </fieldset>
+              </Box>
+            </Grid>
+          </Grid>
+          <div className={groundStyle}>
+          </div>
         </div>
       </React.Fragment>
     );
   }
 }
 
-export default HomePage;
+export default withStyles(useStyles)(HomePage);
