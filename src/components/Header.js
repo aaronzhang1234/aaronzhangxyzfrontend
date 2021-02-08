@@ -51,10 +51,8 @@ class Header extends Component {
     try{
         onSwitchNightMode(changedNightModeChecked)
     }catch{
-        console.log("too lazy to implement dark mode on this page")
     }
     ls.set("nightModeChecked", changedNightModeChecked)
-    console.log(ls.get("nightModeChecked"))
     this.setState({
         nightModeChecked:changedNightModeChecked
       })
@@ -73,7 +71,6 @@ class Header extends Component {
   }
   componentDidMount(){
       let nightModeIndicator = ls.get("nightModeChecked")
-      console.log("stuff is " + nightModeIndicator)
       this.setState({
         nightModeChecked:nightModeIndicator
       })
@@ -81,23 +78,25 @@ class Header extends Component {
       try{
           onSwitchNightMode(nightModeIndicator)
       }catch{
-          console.log("too lazy to implement dark mode on this page")
       }
   }
   render(){
     const {classes} = this.props;
+    let emailTitleLinkStyle = this.state.nightModeChecked?classes.nightEmailTitleLink:classes.lightEmailTitleLink
+    let headerStyle = this.state.nightModeChecked ? classes.nightHeaderStyle : classes.lightHeaderStyle
+    let emailTitleStyle = this.state.nightModeChecked?classes.nightEmailTitle:classes.lightEmailTitle
     return(
       <React.Fragment>
-          <Grid className={this.state.nightModeChecked?classes.nightHeaderStyle:classes.lightHeaderStyle} alignItems="center" container>
-            <Grid item xs={11}>
+          <Grid className={headerStyle} alignItems="center" container>
+            <Grid item xs={9} md={11}>
               <Box alignItems='center' style={{display:"flex"}}>
-                <h2 className={this.state.nightModeChecked?classes.nightEmailTitle:classes.lightEmailTitle}><a className={this.state.nightModeChecked?classes.nightEmailTitleLink:classes.lightEmailTitleLink} href="/">aaronzhang.xyz</a> [at] gmail.com</h2>
-                <a className={this.state.nightModeChecked?classes.nightEmailTitleLink:classes.lightEmailTitleLink}href="https://github.com/aaronzhang1234"><GitHubIcon fontSize="large"/></a> 
-                <a className={this.state.nightModeChecked?classes.nightEmailTitleLink:classes.lightEmailTitleLink} href="https://www.linkedin.com/in/aaronzhang1234/"><LinkedInIcon fontSize="large"/></a>
-                <a className={this.state.nightModeChecked?classes.nightEmailTitleLink:classes.lightEmailTitleLink}href={window.location.origin + '/resume.pdf'}><DescriptionIcon fontSize="large"/></a>
+                <h2 className={emailTitleStyle}><a className={emailTitleLinkStyle} href="/">aaronzhang.xyz</a> [at] gmail.com</h2>
+                <a className={emailTitleLinkStyle}href="https://github.com/aaronzhang1234"><GitHubIcon fontSize="large"/></a> 
+                <a className={emailTitleLinkStyle} href="https://www.linkedin.com/in/aaronzhang1234/"><LinkedInIcon fontSize="large"/></a>
+                <a className={emailTitleLinkStyle}href={window.location.origin + '/resume.pdf'}><DescriptionIcon fontSize="large"/></a>
               </Box>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={3} md={1}>
               <Box>
                 <this.nightModeIcon/>
                 <Switch

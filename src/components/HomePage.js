@@ -98,29 +98,34 @@ class HomePage extends Component {
   
   render(){
     const {classes} = this.props;
+    let skyStyle = this.state.nightModeChecked?classes.nightSkyStyle:classes.skyStyle
+    let fieldSetHomePageStyle = this.state.nightModeChecked?classes.nightFieldSetHomePage:classes.fieldSetHomePage
+    let legendHomePageStyle = this.state.nightModeChecked?classes.nightLegendHomePage:classes.legendHomePage
+    let linkStyle = this.state.nightModeChecked?classes.nightLinks:classes.links
+    let groundStyle = this.state.nightModeChecked?classes.nightGroundStyle:classes.groundStyle
     return(
       <React.Fragment>
         <div className={classes.bodyStyle}>
           <Header
             onSwitchNightMode={this.switchNightMode}
           />
-          <Grid className={this.state.nightModeChecked?classes.nightSkyStyle:classes.skyStyle} container>
-            <Grid item xs={6}>
+          <Grid className={skyStyle} container>
+            <Grid item md={6} xs={12}>
               <Box>
-                <fieldset className={this.state.nightModeChecked?classes.nightFieldSetHomePage:classes.fieldSetHomePage}>
-                  <legend className={this.state.nightModeChecked?classes.nightLegendHomePage:classes.legendHomePage}>Side Projects</legend>
+                <fieldset className={fieldSetHomePageStyle}>
+                  <legend className={legendHomePageStyle}>Side Projects</legend>
                   <ul>
-                      <li><a className= {this.state.nightModeChecked?classes.nightLinks:classes.links} href="/morsemessenger">Morse Messenger, Discrete Messaging</a> 
-                        <a className= {this.state.nightModeChecked?classes.nightLinks:classes.links} href="https://github.com/aaronzhang1234/morsemessenger"><GitHubIcon fontSize="small"/></a></li>
-                      <li><a className= {this.state.nightModeChecked?classes.nightLinks:classes.links} href="https://bit.ly/2YagH0o">Bring Back Old Messenger Emojis</a> 
-                        <a className= {this.state.nightModeChecked?classes.nightLinks:classes.links} href="https://github.com/aaronzhang1234/bringbackmessengeremojis"><GitHubIcon fontSize="small"/></a></li>
-                      <li><a className= {this.state.nightModeChecked?classes.nightLinks:classes.links} href="/fomo">FOMO, See what you missed out!</a></li>
+                      <li><a className= {linkStyle} href="/morsemessenger">Morse Messenger, Discrete Messaging</a> 
+                          <a className= {linkStyle} href="https://github.com/aaronzhang1234/morsemessenger"> <GitHubIcon fontSize="small"/></a></li>
+                      <li><a className= {linkStyle} href="https://bit.ly/2YagH0o">Bring Back Old Messenger Emojis</a> 
+                          <a className= {linkStyle} href="https://github.com/aaronzhang1234/bringbackmessengeremojis"> <GitHubIcon fontSize="small"/></a></li>
+                      <li><a className= {linkStyle} href="/fomo">FOMO, See what you missed out!</a></li>
                   </ul> 
                 </fieldset>
               </Box>
             </Grid>
           </Grid>
-          <div className={this.state.nightModeChecked?classes.nightGroundStyle:classes.groundStyle}>
+          <div className={groundStyle}>
           </div>
         </div>
       </React.Fragment>
