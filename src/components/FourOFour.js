@@ -47,7 +47,7 @@ class FourOFour extends Component {
         />
         <h1 className={classes.errorText} style={textColor}>404 PAGE NOT FOUND</h1>
         <img className={classes.errorImage} src={errorImage}></img>
-        <h2 class="FourOFourText" style={textColor}>Chill here a bit. Then try again.</h2>
+        <h2 className={classes.errorText} style={textColor}>Chill here a bit. Then try again.</h2>
       </React.Fragment>
     );
   }

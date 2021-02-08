@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import styles from '../css/HomePage.css';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -62,21 +61,33 @@ const useStyles = theme =>({
     border:"1.5px solid",
     padding: ".5em 1em .5em 1em"  
   },
+  listItem:{
+    margin:"1em .5em 1em .5em"
+  },
   links:{
     color:"black",
     fontSize:"1.5em",
-    padding:"0",
-    margin:"0"
   },
   nightLinks:{
     color:"white",
     fontSize:"1.5em",
-    padding:"0",
-    margin:"0"
   },
   "links:visited":{
     color:"white",
     fontSize:"1.5em",
+  },
+  icons:{
+    color:"black",
+    padding:"0",
+    margin:"0"
+  },
+  nightIcons:{
+    color:"white",
+    padding:"0",
+    margin:"0"
+  },
+  "icons:visited":{
+    color:"white",
     padding:"0",
     margin:"0"
   }
@@ -102,6 +113,7 @@ class HomePage extends Component {
     let fieldSetHomePageStyle = this.state.nightModeChecked?classes.nightFieldSetHomePage:classes.fieldSetHomePage
     let legendHomePageStyle = this.state.nightModeChecked?classes.nightLegendHomePage:classes.legendHomePage
     let linkStyle = this.state.nightModeChecked?classes.nightLinks:classes.links
+    let iconStyle = this.state.nightModeChecked?classes.nightIcons:classes.icons
     let groundStyle = this.state.nightModeChecked?classes.nightGroundStyle:classes.groundStyle
     return(
       <React.Fragment>
@@ -115,11 +127,11 @@ class HomePage extends Component {
                 <fieldset className={fieldSetHomePageStyle}>
                   <legend className={legendHomePageStyle}>Side Projects</legend>
                   <ul>
-                      <li><a className= {linkStyle} href="/morsemessenger">Morse Messenger, Discrete Messaging</a> 
-                          <a className= {linkStyle} href="https://github.com/aaronzhang1234/morsemessenger"> <GitHubIcon fontSize="small"/></a></li>
-                      <li><a className= {linkStyle} href="https://bit.ly/2YagH0o">Bring Back Old Messenger Emojis</a> 
-                          <a className= {linkStyle} href="https://github.com/aaronzhang1234/bringbackmessengeremojis"> <GitHubIcon fontSize="small"/></a></li>
-                      <li><a className= {linkStyle} href="/fomo">FOMO, See what you missed out!</a></li>
+                      <li className={classes.listItem}><a className= {linkStyle} href="/morsemessenger">Morse Messenger, Discrete Messaging</a> 
+                          <a className= {iconStyle} href="https://github.com/aaronzhang1234/morsemessenger"><GitHubIcon fontSize="small"/></a></li>
+                      <li className={classes.listItem}><a className= {linkStyle} href="https://bit.ly/2YagH0o">Bring Back Old Messenger Emojis</a> 
+                          <a className= {iconStyle} href="https://github.com/aaronzhang1234/bringbackmessengeremojis"><GitHubIcon fontSize="small"/></a></li>
+                      <li className={classes.listItem}><a className= {linkStyle} href="/fomo">FOMO, See what you missed out!</a></li>
                   </ul> 
                 </fieldset>
               </Box>
