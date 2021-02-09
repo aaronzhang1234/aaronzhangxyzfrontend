@@ -131,9 +131,11 @@ class Results extends Component{
             }
             let percentage_string = percentage_change.toLocaleString();
             let amt_shares = Math.floor(this.props.amt/from_price*1000)/1000;
+            let starting_money = amt_shares * from_price;
             let amt_string = amt_shares.toLocaleString();
             let total_money = Math.floor((amt_shares * to_price)*100)/100; 
             let total_money_formatted = accounting.formatMoney(total_money);
+            let money_gained = accounting.formatMoney(total_money - starting_money);
             return(
                 <div id="total-results">
                     <h1 style={textColor}> You would have: </h1>
@@ -142,6 +144,7 @@ class Results extends Component{
                         <img className = "reaction-images" src={reaction_image}/> 
                         A percentage {gain_loss} of {percentage_string}%
                         <img className = "reaction-images" src={reaction_image}/></h1>
+                    <h1 style={textColor}>and a monetary {gain_loss} of {money_gained}</h1>
                 </div>
             )
         }
