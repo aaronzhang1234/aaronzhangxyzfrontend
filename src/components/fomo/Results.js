@@ -3,7 +3,7 @@ import accounting from 'accounting';
 import '../../css/Results.css';
 import TimeBar from './TimeBar.js';
 import moment from 'moment';
-import loading from '../../imgs/fomo/puff.svg';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import face_screaming from '../../imgs/fomo/face_screaming.png';
 import loudly_crying from '../../imgs/fomo/loudly_crying.png';
 import fear_full from '../../imgs/fomo/fear_full.png';
@@ -93,10 +93,7 @@ class Results extends Component{
         }
         return(
             <React.Fragment>
-                <img 
-                    src={loading}
-                    alt="loading"
-                />
+                <CircularProgress style={textColor}/>
             </React.Fragment>
         )
     }

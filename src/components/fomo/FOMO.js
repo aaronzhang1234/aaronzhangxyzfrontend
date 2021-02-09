@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import axios from 'axios';
 import Results from './Results.js'
 import { withStyles } from '@material-ui/core/styles';
-import loading from '../../imgs/fomo/puff.svg';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 import config from '../../config.js';
 import Header from '../Header'
@@ -56,6 +56,11 @@ const useStyles = theme =>({
   tickerInput:{
     textAlign:"center",
     fontSize:"3em"
+  },
+  loadingIcon:{
+    position:"fixed",
+    right:"50%",
+    top:"50%",
   }
 })
 
@@ -116,7 +121,7 @@ class FOMO extends Component {
       }
       let textColor = this.state.nightModeChecked?darkText:lightText
       let moneyInputStyle = this.state.nightModeChecked?classes.darkMoneyInput:classes.moneyInput
-      console.log(this.state.amt==null || this.state.ticker=="")
+      console.log(this.state.stock_data)
     return(
       <React.Fragment>
         <Header onSwitchNightMode={this.switchNightMode}/>
@@ -170,10 +175,8 @@ class FOMO extends Component {
               Error getting stock data. Make sure to input a valid ticker.
           </h1>
         }
-        {!this.state.show_input && !this.state.av_error && this.state.stock_data.length<=0 &&  
-          <img src={loading}
-              alt="loading"
-          />
+        {!this.state.show_input && !this.state.av_error && Object.keys(this.state.stock_data).length<=0 &&  
+          <CircularProgress className={classes.loadingIcon} size="50px" style={textColor}/>
         }
         
       </React.Fragment>
