@@ -55,7 +55,8 @@ const useStyles = theme =>({
   },
   tickerInput:{
     textAlign:"center",
-    fontSize:"3em"
+    fontSize:"3em",
+    textTransform:"uppercase"
   },
   loadingIcon:{
     position:"fixed",
@@ -198,8 +199,9 @@ class FOMO extends Component {
     }
   }
   setTicker=(event)=>{
+    let capital_value =  event.target.value.toUpperCase()
     this.setState({
-      ticker:event.target.value
+      ticker:capital_value
     })
   }
   handleSubmit = (event) =>{
