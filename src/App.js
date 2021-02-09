@@ -9,7 +9,6 @@ import HomePage from './components/HomePage.js';
 import FOMO from './components/fomo/FOMO.js';
 import FourOFour from './components/FourOFour.js'
 import MorseMessenger from './components/morsemessenger/MorseMessenger.js'
-import './css/FOMO.css';
 
 class App extends Component {
   constructor(props){

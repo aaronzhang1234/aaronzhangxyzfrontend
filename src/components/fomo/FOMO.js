@@ -1,11 +1,63 @@
 import React,{Component} from 'react';
 import axios from 'axios';
 import Results from './Results.js'
-import MoneyBar from './MoneyBar.js'
-import '../../css/FOMO.css';
+import { withStyles } from '@material-ui/core/styles';
+import loading from '../../imgs/fomo/puff.svg';
 import Button from '@material-ui/core/Button';
 import config from '../../config.js';
 import Header from '../Header'
+
+
+const useStyles = theme =>({
+  moneyDiv:{
+    display: "inline",
+    verticalAlign: "top",
+    textAlign:"center",
+    display: "inline-block",
+    margin: "10px 10px 0 0",
+    padding: "5px 10px"
+  },
+  moneySign:{
+    display:"inline-block",
+    fontSize:"100px",
+    margin:"0"
+  },
+  moneyInput:{
+    display:"inline-block",
+    textAlign:"center",
+    backgroundColor:"white",
+    color:"black",
+    border:"none",
+    outline:"none",
+    transition:"height 1s",
+    "-webkit-transition":"height 1s",
+    height:"100px",
+    fontSize:"100px"
+  },
+  darkMoneyInput:{
+    display:"inline-block",
+    textAlign:"center",
+    backgroundColor:"rgb(24, 26, 27)",
+    color:"white",
+    border:"none",
+    outline:"none",
+    transition:"height 1s",
+    "-webkit-transition":"height 1s",
+    height:"100px",
+    fontSize:"100px"
+  },
+  mainDiv:{
+    alignItems:"center",
+    justifyContent:"center",
+    display:"block",
+    position:"relative",
+    textAlign:"center"
+  },
+  tickerInput:{
+    textAlign:"center",
+    fontSize:"3em"
+  }
+})
 
 class FOMO extends Component {
   constructor(props){
@@ -15,10 +67,13 @@ class FOMO extends Component {
       ticker:"",
       amt:1000,
       stock_data:{},
-      av_error:false
+      av_error:false,
+      money_length:4,
+      nightModeChecked:false
     }
     this.getStock = this.getStock.bind(this);
   }
+
   componentDidMount=()=>{
     let list_of_default_stocks=["TSLA", "GME", "PLTR", "FB", "BB", "MSFT", "AMZN", "F", "GM", "BABA"]
     let rand_stock = Math.floor(Math.random()*list_of_default_stocks.length)
@@ -37,76 +92,121 @@ class FOMO extends Component {
      })
      .catch((err)=>{
       this.setState({
-        av_error:true
+        av_error:true,
+        show_input:true
       });
     })
-
   } 
+
+  switchNightMode=(nightModeIndicator)=>{
+    this.setState({
+      nightModeChecked:nightModeIndicator
+    })
+  }
+
   render(){
+      const {classes} = this.props
+      let backgroundStyle = this.state.nightModeChecked?"rgb(24, 26, 27)":"white"
+      document.body.style.backgroundColor=backgroundStyle
+      let darkText = {
+          color:"white"
+      }
+      let lightText={
+          color:"black"
+      }
+      let textColor = this.state.nightModeChecked?darkText:lightText
+      let moneyInputStyle = this.state.nightModeChecked?classes.darkMoneyInput:classes.moneyInput
+      console.log(this.state.amt==null || this.state.ticker=="")
     return(
-      <div className="App">
-        <Header/>
-        <header className="App-header">
-        <form onSubmit={this.handleSubmit}>
-          <div 
-           className ={this.state.show_input ? "input_div" : "hidden"}>
-            <h1>HOW MUCH IS A</h1>
-              <MoneyBar sendAmt={this.getAmt}/>
-            <h1> INVESTMENT IN </h1>          
-              <input id="tickerInput" 
-               type="text" 
-               onChange={this.setTicker} 
-               maxLength="4"
-               size="9"
-               value={this.state.ticker}/>
-            <h1> WORTH NOW? </h1>
-            <div
-              className ={this.state.amt==null || this.state.ticker==null ? "" : "hidden"}>
-               <h1>Please pick a valid amount and stock</h1>
+      <React.Fragment>
+        <Header onSwitchNightMode={this.switchNightMode}/>
+        {this.state.show_input &&
+          <form onSubmit={this.handleSubmit}>
+            <div className ={classes.mainDiv}>
+              <h1 style={textColor}>HOW MUCH IS A</h1>
+              <div className={classes.moneyDiv}>
+                <h1 className={classes.moneySign} style={textColor}>$</h1>
+                <input 
+                  value ={this.state.amt} 
+                  onChange={this.updateAmt}
+                  className={moneyInputStyle}
+                  maxLength="10"
+                  size={this.state.money_length +1}
+                  type="text"
+                  autoFocus="autofocus"
+                />
+              </div>
+              <h1 style={textColor}> INVESTMENT IN </h1>          
+                <input className={classes.tickerInput}
+                type="text" 
+                onChange={this.setTicker} 
+                maxLength="4"
+                size="9"
+                value={this.state.ticker}/>
+              <h1 style={textColor}> WORTH NOW? </h1>
+              {(this.state.amt==undefined || this.state.ticker=="") &&
+                  <h1 style={textColor}>Please pick a valid amount and stock</h1>
+              }
+              {this.state.amt!=undefined && this.state.ticker!="" &&
+                <Button type="submit" variant="contained" color="primary" onClick={this.getStock} >
+                  SHOW ME THE MONEY
+                </Button>
+              }
             </div>
-            {
-            <Button type="submit" variant="contained" color="primary" onClick={this.getStock} >
-              SHOW ME THE MONEY
-            </Button>
-            }
-          </div>
-            </form>
-            {
-          <div
-            className= {!this.state.show_input && this.state.stock_data? "results-div":"hidden"}>       
+          </form>
+        }
+        {!this.state.show_input && this.state.stock_data &&
+          <div className={classes.mainDiv}>       
             <Results
               ticker={this.state.ticker}
               amt={this.state.amt}
               stock_data={this.state.stock_data}
-              av_error={this.state.av_error}/>
+              nightModeChecked={this.state.nightModeChecked}
+              />
           </div>
-            }
-        </header>
-      </div>
+        }
+        {this.state.av_error &&
+          <h1 style={{...{textAlign:"center"},...textColor}}>
+              Error getting stock data. Make sure to input a valid ticker.
+          </h1>
+        }
+        {!this.state.show_input && !this.state.av_error && this.state.stock_data.length<=0 &&  
+          <img src={loading}
+              alt="loading"
+          />
+        }
+        
+      </React.Fragment>
     );
   }
-  getAmt=(amt)=>{
-    this.setState({
-      amt:amt
-    })
-  }
-  handleSubmit = (event) =>{
-      event.preventDefault();
-      this.getStock();
+  updateAmt=(evt)=>{
+    let amount = evt.target.value;
+
+    if(!isNaN(amount) && Number(amount) > 0){
       this.setState({
-        show_input:false
+          money_length:amount.length,
+          amt:amount
       });
-  }
-  getTicker=(ticker)=>{
-    this.setState({
-      ticker:ticker
-    })
+    }else{
+      this.setState({
+          money_length:amount.length,
+          amt:undefined
+      });
+    }
   }
   setTicker=(event)=>{
     this.setState({
       ticker:event.target.value
     })
   }
+  handleSubmit = (event) =>{
+      event.preventDefault();
+      this.getStock();
+      this.setState({
+        show_input:false,
+        av_error:false
+      });
+  }
 }
 
-export default FOMO;
+export default withStyles(useStyles)(FOMO);

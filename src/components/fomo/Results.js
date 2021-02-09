@@ -19,10 +19,16 @@ class Results extends Component{
         this.state = {
             important_dates:{},
             from_date:null,
-            to_date:null            
+            to_date:null,           
+            nightModeChecked:false
         }
     }
     componentDidUpdate=()=>{
+        if(this.props.nightModeChecked!=this.state.nightModeChecked){
+            this.setState({
+                nightModeChecked:this.props.nightModeChecked
+            })
+        }
         if(Object.keys(this.state.important_dates).length<=0 && Object.keys(this.props.stock_data).length>=1){        
             this.findImportantDates();
         }
@@ -48,6 +54,7 @@ class Results extends Component{
     getExtremes = (type,after_date) =>{
         let stock_data = this.props.stock_data;
         let dates = Object.keys(stock_data);
+        let current_date = dates[0]
         if(after_date){
             let after_index = this.findDateIndex(after_date);
             dates = dates.slice(0,after_index);
@@ -56,11 +63,16 @@ class Results extends Component{
                                          Math.min.apply(null, dates.map(function(x){return stock_data[x]}));
 
         let extreme_match = dates.filter(function(y){return stock_data[y] === extreme_stock_price});    
+        if(extreme_match[0]==undefined){
+            return current_date
+        }
         return extreme_match[0];
     }
-    findDate = (date)=>{
-        if(date["date"]!=null){
-            let index = this.findDateIndex(date["date"]);
+    findDate = (props)=>{
+        let date = props.date
+        let textColor = props.textColor
+        if(date!=null){
+            let index = this.findDateIndex(date);
 
             let stock_data = this.props.stock_data;
             let dates = Object.keys(stock_data);
@@ -70,13 +82,12 @@ class Results extends Component{
             let rounded_price = Math.floor(price*100)/100;
             let price_formatted = accounting.formatMoney(rounded_price);
 
-            let human_readable_date = moment(date["date"]).format("MMMM Do YYYY");
-
+            let human_readable_date = moment(date).format("MMMM Do YYYY");
             return(
                 <div className="date-results-div">
-                    <h2>On {human_readable_date}</h2>
-                    <h2>the price was</h2>
-                    <h2>{price_formatted}</h2>                
+                    <h2 style={textColor}>On {human_readable_date}</h2>
+                    <h2 style={textColor}>the price was</h2>
+                    <h2 style={textColor}>{price_formatted}</h2>                
                 </div>
             )
         }
@@ -89,7 +100,8 @@ class Results extends Component{
             </React.Fragment>
         )
     }
-    findTotal =()=>{
+    findTotal =(textColor)=>{
+        textColor = textColor.textColor
         let stock_data = this.props.stock_data;
         let dates = Object.keys(stock_data);
 
@@ -127,10 +139,9 @@ class Results extends Component{
             let total_money_formatted = accounting.formatMoney(total_money);
             return(
                 <div id="total-results">
-                    <h1> You would have: </h1>
-                    <h1>{amt_string} share(s) worth {total_money_formatted}</h1>
-
-                    <h1>
+                    <h1 style={textColor}> You would have: </h1>
+                    <h1 style={textColor}>{amt_string} share(s) worth {total_money_formatted}</h1>
+                    <h1 style={textColor}>
                         <img className = "reaction-images" src={reaction_image}/> 
                         A percentage {gain_loss} of {percentage_string}%
                         <img className = "reaction-images" src={reaction_image}/></h1>
@@ -138,48 +149,47 @@ class Results extends Component{
             )
         }
         return( 
-            <h1>Pick two valid dates</h1>
+            <h1 style={textColor} >Pick two valid dates</h1>
         )
     }
     render(){        
+      let darkText = {
+          color:"white"
+      }
+      let lightText={
+          color:"black"
+      }
+      let textColor = this.state.nightModeChecked?darkText:lightText
         return(
             <React.Fragment>                
-                <div
-                    className={Object.keys(this.props.stock_data).length>0?"":"hidden"}
-                >
-                    <h1>If you invested {this.props.amt}  in {this.props.ticker}</h1>
-                    <TimeBar
-                        important_dates={this.state.important_dates}
-                        sendFrom = {this.getFrom}
-                        sendTo = {this.getTo}
-                        first_date = {this.state.important_dates["IPO"]}
-                        last_date = {this.state.important_dates["CURRENT"]}
-                    />                
-                    <div id="dates-div">
-                        <div id="from-results-div">
-                            <this.findDate
-                                date ={this.state.from_date}
-                            />
+                {Object.keys(this.props.stock_data).length>0 &&
+                    <div>
+                        <h1 style={textColor}>If you invested {this.props.amt}  in {this.props.ticker}</h1>
+                        <TimeBar
+                            textColor={textColor}
+                            important_dates={this.state.important_dates}
+                            sendFrom = {this.getFrom}
+                            sendTo = {this.getTo}
+                            first_date = {this.state.important_dates["IPO"]}
+                            last_date = {this.state.important_dates["CURRENT"]}
+                        />                
+                        <div id="dates-div">
+                            <div id="from-results-div">
+                                <this.findDate
+                                    textColor={textColor}
+                                    date ={this.state.from_date}
+                                />
+                            </div>
+                            <div id="to-results-div">
+                                <this.findDate
+                                    textColor={textColor}
+                                    date={this.state.to_date}
+                                />
+                            </div>
                         </div>
-                        <div id="to-results-div">
-                            <this.findDate
-                                date={this.state.to_date}
-                            />
-                        </div>
+                        <this.findTotal textColor={textColor}/>
                     </div>
-                    <this.findTotal/>
-                </div>
-                <div
-                    className={Object.keys(this.props.stock_data).length>0 || this.props.av_error?"hidden":""}
-                >
-                    <img 
-                        src={loading}
-                        alt="loading"
-                    />
-                </div>
-                <h1 className={this.props.av_error?"":"hidden"}>
-                    Error getting stock data. Make sure to input a valid ticker.
-                </h1>
+                }
             </React.Fragment>
         )
     }

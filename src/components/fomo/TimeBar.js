@@ -2,9 +2,33 @@ import React,{Component} from 'react';
 import DatePicker from 'react-datepicker';
 import DropDown from 'react-dropdown';
 import moment from 'moment';
-import '../../css/TimeBar.css'
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import { withStyles } from '@material-ui/core/styles';
 import 'react-datepicker/dist/react-datepicker.css'
 import 'react-dropdown/style.css';
+const useStyles =(theme)=>({
+    calendarDiv:{
+        display:"flex",
+        justifyContent:"center"
+    },
+    timeBarDiv:{
+        display:"flex",
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:"center"
+    },
+    fromBarDiv:{
+        marginRight:"20px",
+        width:"40%",
+        flexDirection:"row"
+    },
+    toBarDiv:{
+        marginLeft:"20px",
+        width:"40%",
+        flexDirection:"row"
+    }
+})
+
 class TimeBar extends Component{
     constructor(props){
         super(props);
@@ -30,42 +54,49 @@ class TimeBar extends Component{
             {value:this.props.important_dates["NEXT_HIGHEST"] ,label:"The Next Highest"},
             {value:this.props.important_dates["NEXT_LOWEST"] ,label:"The Next Lowest"}
         ]
-        
+        const {classes} = this.props
+        let textColor = this.props.textColor
         return(
-            <div id="time-bar-div">
-                <div id="from-bar-div">
-                    <h1>At </h1>
+            <div className={classes.timeBarDiv}>
+                <div className={classes.fromBarDiv}>
+                    <h1 style={textColor}>At </h1>
                     <DropDown
                         options={from_options}                                                
                         value = {this.state.from_label}
                         placeholder="Select a date to begin"
                         onChange={this.handleFromChange}                        
                     /> 
-                    <DatePicker
-                        selected={this.state.from_date}                
-                        onChange={this.handleFromChange}
-                        minDate={this.props.first_date}
-                        maxDate={this.props.last_date}
-                        filterDate={this.isWeekday}
-                        showYearDropdown
-                    />
+                    <div className={classes.calendarDiv}>
+                        <DateRangeIcon style={textColor}/>                    
+                        <DatePicker
+                            selected={this.state.from_date}                
+                            onChange={this.handleFromChange}
+                            minDate={this.props.first_date}
+                            maxDate={this.props.last_date}
+                            filterDate={this.isWeekday}
+                            showYearDropdown
+                        />
+                    </div>
                 </div>
-                <div id="to-bar-div">
-                    <h1>and sold at </h1>
+                <div className={classes.toBarDiv}>
+                    <h1 style={textColor}>and sold at </h1>
                     <DropDown
                         value={this.state.to_label}
                         options={to_options}
                         placeholder="Select an ending date"
                         onChange={this.handleToChange}
                     /> 
-                    <DatePicker
-                        selected={this.state.to_date}
-                        onChange={this.handleToChange}
-                        minDate={this.props.first_date}
-                        maxDate={this.props.last_date}
-                        filterDate={this.isWeekday}
-                        showYearDropdown
-                    />
+                    <div className={classes.calendarDiv}>
+                        <DateRangeIcon style={textColor}/>  
+                        <DatePicker
+                            selected={this.state.to_date}
+                            onChange={this.handleToChange}
+                            minDate={this.props.first_date}
+                            maxDate={this.props.last_date}
+                            filterDate={this.isWeekday}
+                            showYearDropdown
+                        />
+                    </div>
                 </div>
             </div>
         )
@@ -105,4 +136,4 @@ class TimeBar extends Component{
         this.props.sendTo(to_date);
     }
 }
-export default TimeBar
+export default withStyles(useStyles)(TimeBar);
