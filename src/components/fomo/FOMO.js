@@ -122,7 +122,6 @@ class FOMO extends Component {
       }
       let textColor = this.state.nightModeChecked?darkText:lightText
       let moneyInputStyle = this.state.nightModeChecked?classes.darkMoneyInput:classes.moneyInput
-      console.log(this.state.stock_data)
     return(
       <React.Fragment>
         <Header onSwitchNightMode={this.switchNightMode}/>
