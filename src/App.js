@@ -24,7 +24,7 @@ class App extends Component {
             <Route exact path="/404">
               <FourOFour/>
             </Route>
-            <Route exact path="/fomo">
+            <Route exact path="/ifyouinvestedin">
               <FOMO/>
             </Route>
             <Route exact path="/">

@@ -97,7 +97,7 @@ class Header extends Component {
               </Box>
             </Grid>
             <Grid item xs={3} md={1}>
-              <Box>
+              <Box alignItems='center' style={{display:"flex"}}>
                 <this.nightModeIcon/>
                 <Switch
                   checked={this.state.nightModeChecked}

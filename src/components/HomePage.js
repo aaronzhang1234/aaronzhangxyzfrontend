@@ -131,7 +131,7 @@ class HomePage extends Component {
                           <a className= {iconStyle} href="https://github.com/aaronzhang1234/morsemessenger"><GitHubIcon fontSize="small"/></a></li>
                       <li className={classes.listItem}><a className= {linkStyle} href="https://bit.ly/2YagH0o">Bring Back Old Messenger Emojis</a> 
                           <a className= {iconStyle} href="https://github.com/aaronzhang1234/bringbackmessengeremojis"><GitHubIcon fontSize="small"/></a></li>
-                      <li className={classes.listItem}><a className= {linkStyle} href="/fomo">FOMO, See what you missed out!</a></li>
+                      <li className={classes.listItem}><a className= {linkStyle} href="/ifyouinvestedin">If you invested in ...</a></li>
                   </ul> 
                 </fieldset>
               </Box>
