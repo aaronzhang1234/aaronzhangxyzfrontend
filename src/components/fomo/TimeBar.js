@@ -26,6 +26,14 @@ const useStyles =(theme)=>({
         marginLeft:"20px",
         width:"40%",
         flexDirection:"row"
+    },
+    atText:{
+        marginTop:"0px",
+        fontSize:"25px",
+    },
+    soldAtText:{
+        marginTop:"0px",
+        fontSize:"25px",
     }
 })
 
@@ -59,7 +67,7 @@ class TimeBar extends Component{
         return(
             <div className={classes.timeBarDiv}>
                 <div className={classes.fromBarDiv}>
-                    <h1 style={textColor}>At </h1>
+                    <h1 className={classes.atText} style={textColor}>At </h1>
                     <DropDown
                         options={from_options}                                                
                         value = {this.state.from_label}
@@ -79,7 +87,7 @@ class TimeBar extends Component{
                     </div>
                 </div>
                 <div className={classes.toBarDiv}>
-                    <h1 style={textColor}>and sold at </h1>
+                    <h1 className={classes.soldAtText} style={textColor}>and sold at </h1>
                     <DropDown
                         value={this.state.to_label}
                         options={to_options}
