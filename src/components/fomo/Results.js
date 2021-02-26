@@ -3,6 +3,9 @@ import accounting from 'accounting';
 import '../../css/Results.css';
 import TimeBar from './TimeBar.js';
 import moment from 'moment';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import face_screaming from '../../imgs/fomo/face_screaming.png';
 import loudly_crying from '../../imgs/fomo/loudly_crying.png';
@@ -13,6 +16,26 @@ import relieved_face from '../../imgs/fomo/relieved_face.png';
 import open_mouth from '../../imgs/fomo/open_mouth.png';
 import heart_eyes from '../../imgs/fomo/heart_eyes.png';
 
+const useStyles = theme =>({
+    ifyouinvestin:{
+        fontSize:"50px",
+        marginTop:"0px",
+    },
+    lightButtonStyle:{
+        backgroundColor:"#d4ebf2",
+        fontWeight:"bold",
+        color:"black",
+        width:"300px",
+        fontSize:"20px"
+    },
+    darkButtonStyle:{
+        backgroundColor:"rgb(20, 54, 65)",
+        fontWeight:"bold",
+        color:"white",
+        width:"300px",
+        fontSize:"20px"
+    }
+})
 class Results extends Component{
     constructor(props){
         super(props);
@@ -136,15 +159,21 @@ class Results extends Component{
             let total_money = Math.floor((amt_shares * to_price)*100)/100; 
             let total_money_formatted = accounting.formatMoney(total_money);
             let money_gained = accounting.formatMoney(total_money - starting_money);
+            let textStyle={
+                fontSize:"30"
+            }
             return(
                 <div id="total-results">
-                    <h1 style={textColor}> You would have: </h1>
-                    <h1 style={textColor}>{amt_string} share(s) worth {total_money_formatted}</h1>
-                    <h1 style={textColor}>
-                        <img className = "reaction-images" src={reaction_image}/> 
-                        A percentage {gain_loss} of {percentage_string}%
-                        <img className = "reaction-images" src={reaction_image}/></h1>
-                    <h1 style={textColor}>and a monetary {gain_loss} of {money_gained}</h1>
+                     <h1 style={{...textColor,...{fontSize:"50px", marginBottom:"0", marginTop:"5px"}}}>You would have:</h1>
+                     <Box justifyContent="center" alignItems="center" style={{display:"flex"}}>
+                        <img className="reaction-images" src={reaction_image}/> 
+                        <div style={{margin:"30px"}}>
+                            <h1 style={{...textColor,...{fontSize:"40px"}}}>{amt_string} share(s) worth {total_money_formatted}</h1>
+                            <h1 style={textColor}>Percentage {gain_loss} : {percentage_string}% </h1> 
+                            <h1 style={textColor}>Monetary {gain_loss} : {money_gained}</h1>
+                        </div>
+                        <img className="reaction-images" src={reaction_image}/>
+                     </Box>
                 </div>
             )
         }
@@ -153,6 +182,7 @@ class Results extends Component{
         )
     }
     render(){        
+      const {classes} = this.props
       let darkText = {
           color:"white"
       }
@@ -160,11 +190,12 @@ class Results extends Component{
           color:"black"
       }
       let textColor = this.state.nightModeChecked?darkText:lightText
+      let buttonStyle = this.state.nightModeChecked?classes.darkButtonStyle:classes.lightButtonStyle
         return(
             <React.Fragment>                
                 {Object.keys(this.props.stock_data).length>0 &&
                     <div>
-                        <h1 style={textColor}>If you invested {this.props.amt}  in {this.props.ticker}</h1>
+                        <h1 className={classes.ifyouinvestin} style={textColor}>If you invested ${this.props.amt}  in {this.props.ticker}</h1>
                         <TimeBar
                             textColor={textColor}
                             important_dates={this.state.important_dates}
@@ -188,6 +219,7 @@ class Results extends Component{
                             </div>
                         </div>
                         <this.findTotal textColor={textColor}/>
+                        <Button className={buttonStyle} onClick={this.reset}>Try again</Button>
                     </div>
                 }
             </React.Fragment>
@@ -235,5 +267,15 @@ class Results extends Component{
         }
         return(match_index);
     }
+    reset=()=>{
+        const{resetFOMO} = this.props;
+        this.setState({
+          important_dates:{},
+          from_date:null,
+          to_date:null,           
+          nightModeChecked:false
+        })
+        resetFOMO()
+    }
 }
-export default Results
+export default withStyles(useStyles)(Results);

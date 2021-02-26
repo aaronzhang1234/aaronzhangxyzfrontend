@@ -62,6 +62,25 @@ const useStyles = theme =>({
     position:"fixed",
     right:"50%",
     top:"50%",
+  },
+  titles:{
+    fontSize:"50px",
+    marginTop:"10px",
+    marginBottom:"10px",
+  },
+  lightButtonStyle:{
+    backgroundColor:"#d4ebf2",
+    fontWeight:"bold",
+    color:"black",
+    width:"300px",
+    fontSize:"20px"
+  },
+  darkButtonStyle:{
+    backgroundColor:"rgb(20, 54, 65)",
+    fontWeight:"bold",
+    color:"white",
+    width:"300px",
+    fontSize:"20px"
   }
 })
 
@@ -122,13 +141,14 @@ class FOMO extends Component {
       }
       let textColor = this.state.nightModeChecked?darkText:lightText
       let moneyInputStyle = this.state.nightModeChecked?classes.darkMoneyInput:classes.moneyInput
+      let buttonStyle = this.state.nightModeChecked?classes.darkButtonStyle:classes.lightButtonStyle
     return(
       <React.Fragment>
         <Header onSwitchNightMode={this.switchNightMode}/>
         {this.state.show_input &&
           <form onSubmit={this.handleSubmit}>
             <div className ={classes.mainDiv}>
-              <h1 style={textColor}>HOW MUCH IS A</h1>
+              <h1 className={classes.titles} style={textColor}>HOW MUCH IS A</h1>
               <div className={classes.moneyDiv}>
                 <h1 className={classes.moneySign} style={textColor}>$</h1>
                 <input 
@@ -141,19 +161,19 @@ class FOMO extends Component {
                   autoFocus="autofocus"
                 />
               </div>
-              <h1 style={textColor}> INVESTMENT IN </h1>          
+              <h1 className={classes.titles} style={textColor}> INVESTMENT IN </h1>          
                 <input className={classes.tickerInput}
                 type="text" 
                 onChange={this.setTicker} 
                 maxLength="4"
                 size="9"
                 value={this.state.ticker}/>
-              <h1 style={textColor}> WORTH NOW? </h1>
+              <h1 className={classes.titles} style={textColor}> WORTH NOW? </h1>
               {(this.state.amt==undefined || this.state.ticker=="") &&
                   <h1 style={textColor}>Please pick a valid amount and stock</h1>
               }
               {this.state.amt!=undefined && this.state.ticker!="" &&
-                <Button type="submit" variant="contained" color="primary" onClick={this.getStock} >
+                <Button className={buttonStyle} type="submit" variant="contained" color="primary" onClick={this.getStock} >
                   SHOW ME THE MONEY
                 </Button>
               }
@@ -163,6 +183,7 @@ class FOMO extends Component {
         {!this.state.show_input && this.state.stock_data &&
           <div className={classes.mainDiv}>       
             <Results
+              resetFOMO={this.resetFOMO}
               ticker={this.state.ticker}
               amt={this.state.amt}
               stock_data={this.state.stock_data}
@@ -210,6 +231,20 @@ class FOMO extends Component {
         show_input:false,
         av_error:false
       });
+  }
+  resetFOMO =()=>{
+    this.setState({
+        show_input:true,
+        amt:1000,
+        stock_data:{},
+        av_error:false,
+        money_length:4
+    });
+    let list_of_default_stocks=["TSLA", "GME", "PLTR", "FB", "BB", "MSFT", "AMZN", "F", "GM", "BABA"]
+    let rand_stock = Math.floor(Math.random()*list_of_default_stocks.length)
+    this.setState({
+      ticker: list_of_default_stocks[rand_stock]
+    })
   }
 }
 
