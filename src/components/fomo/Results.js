@@ -121,6 +121,7 @@ class Results extends Component{
         )
     }
     findTotal =(textColor)=>{
+
         textColor = textColor.textColor
         let stock_data = this.props.stock_data;
         let dates = Object.keys(stock_data);
@@ -159,15 +160,13 @@ class Results extends Component{
             let total_money = Math.floor((amt_shares * to_price)*100)/100; 
             let total_money_formatted = accounting.formatMoney(total_money);
             let money_gained = accounting.formatMoney(total_money - starting_money);
-            let textStyle={
-                fontSize:"30"
-            }
+        
             return(
                 <div id="total-results">
                      <h1 style={{...textColor,...{fontSize:"50px", marginBottom:"0", marginTop:"5px"}}}>You would have:</h1>
                      <Box justifyContent="center" alignItems="center" style={{display:"flex"}}>
                         <img className="reaction-images" src={reaction_image}/> 
-                        <div style={{margin:"30px"}}>
+                        <div>
                             <h1 style={{...textColor,...{fontSize:"40px"}}}>{amt_string} share(s) worth {total_money_formatted}</h1>
                             <h1 style={textColor}>Percentage {gain_loss} : {percentage_string}% </h1> 
                             <h1 style={textColor}>Monetary {gain_loss} : {money_gained}</h1>
