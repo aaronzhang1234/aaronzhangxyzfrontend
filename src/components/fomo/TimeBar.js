@@ -130,18 +130,13 @@ class TimeBar extends Component{
     handleFromChange=(date)=>{
         let from_date = date["value"]?date["value"]: date;
         let from_label = date["label"]?date["label"]:moment(date).format("MMMM Do YYYY");
-        let to_date = this.state.to_date;
         this.props.sendFrom(from_date);
-        if(from_date > to_date){
-            this.setState({
-                to_date:null,
-                to_label:null
-            })
-            this.props.sendTo(null);
-        }
+        this.props.sendTo(null);
         this.setState({
             from_date:from_date,
-            from_label:from_label
+            from_label:from_label,
+            to_date:null,
+            to_label:null
         })
     }
     handleToChange=(date)=>{
