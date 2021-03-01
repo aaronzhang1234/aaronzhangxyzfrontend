@@ -164,7 +164,7 @@ class FOMO extends Component {
                 <input className={classes.tickerInput}
                 type="text" 
                 onChange={this.setTicker} 
-                maxLength="4"
+                maxLength="5"
                 size="9"
                 value={this.state.ticker}/>
               <h1 className={classes.titles} style={textColor}> WORTH NOW? </h1>
