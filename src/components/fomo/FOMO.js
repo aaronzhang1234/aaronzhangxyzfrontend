@@ -80,6 +80,11 @@ const useStyles = theme =>({
     color:"white",
     width:"300px",
     fontSize:"20px"
+  },
+  footerStyle:{
+    display:"flex",
+    flexGrow:"1",
+    justifyContent:"center" 
   }
 })
 
@@ -141,10 +146,12 @@ class FOMO extends Component {
       let textColor = this.state.nightModeChecked?darkText:lightText
       let moneyInputStyle = this.state.nightModeChecked?classes.darkMoneyInput:classes.moneyInput
       let buttonStyle = this.state.nightModeChecked?classes.darkButtonStyle:classes.lightButtonStyle
+      let productHuntTheme = this.state.nightModeChecked?"dark":"light"
     return(
       <React.Fragment>
         <Header onSwitchNightMode={this.switchNightMode}/>
         {this.state.show_input &&
+        <React.Fragment>
           <form onSubmit={this.handleSubmit}>
             <div className ={classes.mainDiv}>
               <h1 className={classes.titles} style={textColor}>HOW MUCH IS A</h1>
@@ -178,6 +185,12 @@ class FOMO extends Component {
               }
             </div>
           </form>
+          <div className={classes.footerStyle}>
+            <a style={{alignSelf:"flex-end"}}href="https://www.producthunt.com/posts/if-you-invested-in?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-if-you-invested-in" target="_blank">
+              <img src={"https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=286355&theme="+productHuntTheme} alt="If You Invested In.... - Compare stock prices on different dates | Product Hunt" style={{width:"250px", height:"54px"}} width="250" height="54" />
+            </a>
+          </div>
+          </React.Fragment>
         }
         {!this.state.show_input && this.state.stock_data &&
           <div className={classes.mainDiv}>       
