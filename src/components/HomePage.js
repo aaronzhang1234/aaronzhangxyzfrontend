@@ -111,7 +111,7 @@ class HomePage extends Component {
                 <fieldset className={fieldSetHomePageStyle}>
                   <legend className={legendHomePageStyle}>About Me</legend>
                   <ul>
-                      <li className={classes.listItem} style={textColor}>Hi! Welcome to my Website. My name's Aaron Zhang. Translated and put together, it means <a style={textColor} href="https://en.wikipedia.org/wiki/Zhang_(surname)">Archer</a> of the <a style={textColor} href="https://en.wikipedia.org/wiki/Aaron_(given_name)">High Mountain</a>.</li>
+                      <li className={classes.listItem} style={textColor}>Hi! My name's Aaron Zhang. Translated and put together, it means <a style={textColor} href="https://en.wikipedia.org/wiki/Zhang_(surname)">Archer</a> of the <a style={textColor} href="https://en.wikipedia.org/wiki/Aaron_(given_name)">High Mountain</a>.</li>
                       <li className={classes.listItem} style={textColor}>I'm a Fullstack Software Engineer who likes to make websites for ideas I think about at night.</li>
                       <li className={classes.listItem} style={textColor}>In my free time I like to play the piano, learn about history, watch Black and White movies, and sometimes play Minecraft for weeks at a time.</li>
                   </ul>
