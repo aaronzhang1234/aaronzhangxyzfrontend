@@ -67,20 +67,10 @@ const useStyles = theme =>({
     margin:"1em .5em 1em .5em",
     fontSize:"1.5em",
   },
-  "links:visited":{
-    color:"white",
-    fontSize:"1.5em",
-  },
   icons:{
     padding:"0",
     margin:"0"
-  },
-  "icons:visited":{
-    color:"white",
-    padding:"0",
-    margin:"0"
   }
-
 })
 
 class HomePage extends Component {
