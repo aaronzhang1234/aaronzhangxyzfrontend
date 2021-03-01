@@ -11,15 +11,9 @@ import Brightness2Icon from '@material-ui/icons/Brightness2';
 import ls from 'local-storage'
 
 const useStyles = theme =>({
-  lightEmailTitle:{
+  emailTitleStyle:{
     marginLeft:"25px",
     marginRight:"25px",
-    color:"black"
-  },
-  nightEmailTitle:{
-    marginLeft:"25px",
-    marginRight:"25px",
-    color:"white"
   },
   lightHeaderStyle:{
       backgroundColor:"#d4ebf2"
@@ -27,14 +21,13 @@ const useStyles = theme =>({
   nightHeaderStyle:{
     backgroundColor:"rgb(20, 54, 65)"
   },
-  lightEmailTitleLink:{
-      color:"black"
-  },
-  nightEmailTitleLink:{
-      color:"white"
-  },
-  "emailTitleLink:visited":{
-      color:"white"
+  nightModeContainer:{
+    display:"flex",
+    justifyContent:"center",
+    [theme.breakpoints.up('md')]: {
+      justifyContent:"flex-end"
+    },
+    alignItems:"center",
   }
 })
 
@@ -82,22 +75,27 @@ class Header extends Component {
   }
   render(){
     const {classes} = this.props;
-    let emailTitleLinkStyle = this.state.nightModeChecked?classes.nightEmailTitleLink:classes.lightEmailTitleLink
     let headerStyle = this.state.nightModeChecked ? classes.nightHeaderStyle : classes.lightHeaderStyle
-    let emailTitleStyle = this.state.nightModeChecked?classes.nightEmailTitle:classes.lightEmailTitle
+    let darkText = {
+        color:"white"
+    }
+    let lightText={
+        color:"black"
+    }
+    let textColor = this.state.nightModeChecked?darkText:lightText
     return(
       <React.Fragment>
           <Grid className={headerStyle} alignItems="center" container>
-            <Grid item xs={9} md={11}>
+            <Grid item xs={12} md={11}>
               <Box alignItems='center' style={{display:"flex"}}>
-                <h2 className={emailTitleStyle}><a className={emailTitleLinkStyle} href="/">aaronzhang.xyz</a> [at] gmail.com</h2>
-                <a className={emailTitleLinkStyle}href="https://github.com/aaronzhang1234"><GitHubIcon fontSize="large"/></a> 
-                <a className={emailTitleLinkStyle} href="https://www.linkedin.com/in/aaronzhang1234/"><LinkedInIcon fontSize="large"/></a>
-                <a className={emailTitleLinkStyle}href={window.location.origin + '/resume.pdf'}><DescriptionIcon fontSize="large"/></a>
+                <h2 className={classes.emailTitleStyle} style={textColor}><a style={textColor} href="/">aaronzhang.xyz</a> [at] gmail.com</h2>
+                <a style={textColor} href="https://github.com/aaronzhang1234"><GitHubIcon fontSize="large"/></a> 
+                <a style={textColor} href="https://www.linkedin.com/in/aaronzhang1234/"><LinkedInIcon fontSize="large"/></a>
+                <a style={textColor} href={window.location.origin + '/resume.pdf'}><DescriptionIcon fontSize="large"/></a>
               </Box>
             </Grid>
-            <Grid item xs={3} md={1}>
-              <Box alignItems='center' style={{display:"flex"}}>
+            <Grid item xs={12} md={1}>
+              <Box alignItems='center' className={classes.nightModeContainer}>
                 <this.nightModeIcon/>
                 <Switch
                   checked={this.state.nightModeChecked}

@@ -4,6 +4,7 @@ import '../../css/Results.css';
 import TimeBar from './TimeBar.js';
 import moment from 'moment';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -121,6 +122,7 @@ class Results extends Component{
         )
     }
     findTotal =(textColor)=>{
+
         textColor = textColor.textColor
         let stock_data = this.props.stock_data;
         let dates = Object.keys(stock_data);
@@ -159,16 +161,14 @@ class Results extends Component{
             let total_money = Math.floor((amt_shares * to_price)*100)/100; 
             let total_money_formatted = accounting.formatMoney(total_money);
             let money_gained = accounting.formatMoney(total_money - starting_money);
-            let textStyle={
-                fontSize:"30"
-            }
+        
             return(
                 <div id="total-results">
                      <h1 style={{...textColor,...{fontSize:"50px", marginBottom:"0", marginTop:"5px"}}}>You would have:</h1>
+                     <h1 style={{...textColor,...{fontSize:"40px"}}}>{amt_string} share(s) worth {total_money_formatted}</h1>
                      <Box justifyContent="center" alignItems="center" style={{display:"flex"}}>
                         <img className="reaction-images" src={reaction_image}/> 
-                        <div style={{margin:"30px"}}>
-                            <h1 style={{...textColor,...{fontSize:"40px"}}}>{amt_string} share(s) worth {total_money_formatted}</h1>
+                        <div>
                             <h1 style={textColor}>Percentage {gain_loss} : {percentage_string}% </h1> 
                             <h1 style={textColor}>Monetary {gain_loss} : {money_gained}</h1>
                         </div>
@@ -204,20 +204,24 @@ class Results extends Component{
                             first_date = {this.state.important_dates["IPO"]}
                             last_date = {this.state.important_dates["CURRENT"]}
                         />                
-                        <div id="dates-div">
-                            <div id="from-results-div">
-                                <this.findDate
-                                    textColor={textColor}
-                                    date ={this.state.from_date}
-                                />
-                            </div>
-                            <div id="to-results-div">
-                                <this.findDate
-                                    textColor={textColor}
-                                    date={this.state.to_date}
-                                />
-                            </div>
-                        </div>
+                        <Grid align-items="center" container>
+                            <Grid align="center" item xs={6}>
+                                <div>
+                                    <this.findDate
+                                        textColor={textColor}
+                                        date ={this.state.from_date}
+                                    />
+                                </div>
+                            </Grid>
+                            <Grid align="center" item xs={6}>
+                                <div>
+                                    <this.findDate
+                                        textColor={textColor}
+                                        date={this.state.to_date}
+                                    />
+                                </div>
+                            </Grid>
+                        </Grid>
                         <this.findTotal textColor={textColor}/>
                         <Button className={buttonStyle} onClick={this.reset}>Try again</Button>
                     </div>

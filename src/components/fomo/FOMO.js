@@ -10,10 +10,9 @@ import Header from '../Header'
 
 const useStyles = theme =>({
   moneyDiv:{
-    display: "inline",
-    verticalAlign: "top",
-    textAlign:"center",
-    display: "inline-block",
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
     margin: "10px 10px 0 0",
     padding: "5px 10px"
   },
@@ -155,7 +154,7 @@ class FOMO extends Component {
                   value ={this.state.amt} 
                   onChange={this.updateAmt}
                   className={moneyInputStyle}
-                  maxLength="10"
+                  maxLength="4"
                   size={this.state.money_length +1}
                   type="text"
                   autoFocus="autofocus"
