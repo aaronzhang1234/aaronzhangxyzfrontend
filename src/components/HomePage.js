@@ -34,6 +34,7 @@ const useStyles = theme =>({
     marginLeft:"30px",
     outlineColor:"black",
     border: "6px solid",
+    width:"80%"
   },
   nightFieldSetHomePage:{
     marginTop:"20px",
@@ -42,6 +43,7 @@ const useStyles = theme =>({
     marginLeft:"30px",
     outlineColor:"white",
     border: "6px solid",
+    width:"80%"
   },
   legendHomePage:{
     color:"black",
@@ -62,14 +64,7 @@ const useStyles = theme =>({
     padding: ".5em 1em .5em 1em"  
   },
   listItem:{
-    margin:"1em .5em 1em .5em"
-  },
-  links:{
-    color:"black",
-    fontSize:"1.5em",
-  },
-  nightLinks:{
-    color:"white",
+    margin:"1em .5em 1em .5em",
     fontSize:"1.5em",
   },
   "links:visited":{
@@ -77,12 +72,6 @@ const useStyles = theme =>({
     fontSize:"1.5em",
   },
   icons:{
-    color:"black",
-    padding:"0",
-    margin:"0"
-  },
-  nightIcons:{
-    color:"white",
     padding:"0",
     margin:"0"
   },
@@ -112,9 +101,14 @@ class HomePage extends Component {
     let skyStyle = this.state.nightModeChecked?classes.nightSkyStyle:classes.skyStyle
     let fieldSetHomePageStyle = this.state.nightModeChecked?classes.nightFieldSetHomePage:classes.fieldSetHomePage
     let legendHomePageStyle = this.state.nightModeChecked?classes.nightLegendHomePage:classes.legendHomePage
-    let linkStyle = this.state.nightModeChecked?classes.nightLinks:classes.links
-    let iconStyle = this.state.nightModeChecked?classes.nightIcons:classes.icons
     let groundStyle = this.state.nightModeChecked?classes.nightGroundStyle:classes.groundStyle
+    let darkText = {
+      color:"white"
+    }
+    let lightText={
+        color:"black"
+    }
+    let textColor = this.state.nightModeChecked?darkText:lightText
     return(
       <React.Fragment>
         <div className={classes.bodyStyle}>
@@ -125,13 +119,25 @@ class HomePage extends Component {
             <Grid item md={6} xs={12}>
               <Box>
                 <fieldset className={fieldSetHomePageStyle}>
+                  <legend className={legendHomePageStyle}>About Me</legend>
+                  <ul>
+                      <li className={classes.listItem} style={textColor}>Hi! Welcome to my Website. My name's Aaron Zhang. Translated and put together, it means <a style={textColor} href="https://en.wikipedia.org/wiki/Zhang_(surname)">Archer</a> of the <a style={textColor} href="https://en.wikipedia.org/wiki/Aaron_(given_name)">High Mountain</a>.</li>
+                      <li className={classes.listItem} style={textColor}>I'm a Fullstack Software Engineer who likes to make websites for ideas I think about at night.</li>
+                      <li className={classes.listItem} style={textColor}>In my free time I like to play the piano, learn about history, watch Black and White movies, and sometimes play Minecraft for weeks at a time.</li>
+                  </ul>
+                </fieldset>
+              </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box>
+                <fieldset className={fieldSetHomePageStyle}>
                   <legend className={legendHomePageStyle}>Side Projects</legend>
                   <ul>
-                      <li className={classes.listItem}><a className= {linkStyle} href="/morsemessenger">Morse Messenger, Discrete Messaging</a> 
-                          <a className= {iconStyle} href="https://github.com/aaronzhang1234/morsemessenger"><GitHubIcon fontSize="small"/></a></li>
-                      <li className={classes.listItem}><a className= {linkStyle} href="https://bit.ly/2YagH0o">Bring Back Old Messenger Emojis</a> 
-                          <a className= {iconStyle} href="https://github.com/aaronzhang1234/bringbackmessengeremojis"><GitHubIcon fontSize="small"/></a></li>
-                      <li className={classes.listItem}><a className= {linkStyle} href="/ifyouinvestedin">If you invested in ...</a></li>
+                      <li className={classes.listItem}><a style={textColor} href="/morsemessenger">Morse Messenger, Discrete Messaging</a> 
+                          <a className= {classes.icons} style={textColor} href="https://github.com/aaronzhang1234/morsemessengerapp"><GitHubIcon fontSize="small"/></a></li>
+                      <li className={classes.listItem}><a style={textColor} href="https://bit.ly/2YagH0o">Bring Back Old Messenger Emojis</a> 
+                          <a className= {classes.icons} style={textColor} href="https://github.com/aaronzhang1234/bringbackmessengeremojis"><GitHubIcon fontSize="small"/></a></li>
+                      <li className={classes.listItem}><a style={textColor} href="/ifyouinvestedin">If you invested in ...</a></li>
                   </ul> 
                 </fieldset>
               </Box>

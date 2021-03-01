@@ -91,7 +91,6 @@ class Header extends Component {
                 <h2 className={classes.emailTitleStyle} style={textColor}><a style={textColor} href="/">aaronzhang.xyz</a> [at] gmail.com</h2>
                 <a style={textColor} href="https://github.com/aaronzhang1234"><GitHubIcon fontSize="large"/></a> 
                 <a style={textColor} href="https://www.linkedin.com/in/aaronzhang1234/"><LinkedInIcon fontSize="large"/></a>
-                <a style={textColor} href={window.location.origin + '/resume.pdf'}><DescriptionIcon fontSize="large"/></a>
               </Box>
             </Grid>
             <Grid item xs={12} md={1}>
