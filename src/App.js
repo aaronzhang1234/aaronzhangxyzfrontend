@@ -1,8 +1,7 @@
 import React,{Component} from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
-  Redirect,
+  Routes,
   Route
 } from 'react-router-dom';
 import HomePage from './components/HomePage.js';
@@ -17,21 +16,12 @@ class App extends Component {
   render(){
     return(
          <Router>
-          <Switch>
-            <Route exact path="/morsemessenger">
-              <MorseMessenger/>
-            </Route>
-            <Route exact path="/404">
-              <FourOFour/>
-            </Route>
-            <Route exact path="/ifyouinvestedin">
-              <FOMO/>
-            </Route>
-            <Route exact path="/">
-              <HomePage/>
-            </Route>
-            <Redirect to="/404"/>
-          </Switch>
+          <Routes>
+            <Route path="*" element={<FourOFour/>}/>
+            <Route path="/" element={<HomePage/>}/>
+            <Route path="/morsemessenger" element={<MorseMessenger/>}/>
+            <Route path="/ifyouinvestedin" element={<FOMO/>}/>
+          </Routes>
         </Router>
     );
   };

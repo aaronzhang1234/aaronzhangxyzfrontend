@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
 import axios from 'axios';
 import Results from './Results.js'
-import { withStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Button from '@material-ui/core/Button';
+import { withStyles } from '@mui/styles';
+import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
 import config from '../../config.js';
 import Header from '../Header'
 

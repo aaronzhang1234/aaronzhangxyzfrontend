@@ -1,13 +1,12 @@
 import React,{Component} from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import DescriptionIcon from '@material-ui/icons/Description';
-import Switch from '@material-ui/core/Switch';
-import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
-import Brightness2Icon from '@material-ui/icons/Brightness2';
+import { withStyles } from '@mui/styles';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Switch from '@mui/material/Switch';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import BrightnessHighIcon from '@mui/icons-material/BrightnessHigh';
+import Brightness2Icon from '@mui/icons-material/Brightness2';
 import ls from 'local-storage'
 
 const useStyles = theme =>({
@@ -24,9 +23,6 @@ const useStyles = theme =>({
   nightModeContainer:{
     display:"flex",
     justifyContent:"center",
-    [theme.breakpoints.up('md')]: {
-      justifyContent:"flex-end"
-    },
     alignItems:"center",
   }
 })

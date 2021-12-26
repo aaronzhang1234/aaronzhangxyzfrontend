@@ -1,21 +1,21 @@
 import React,{Component} from 'react';
 import axios from 'axios';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Backdrop from '@material-ui/core/Backdrop';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import WifiIcon from '@material-ui/icons/Wifi';
-import LockIcon from '@material-ui/icons/Lock';
-import FlashOnIcon from '@material-ui/icons/FlashOn';
-import Divider from '@material-ui/core/Divider';
-import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
+import { withStyles } from '@mui/styles';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+import WifiIcon from '@mui/icons-material/Wifi';
+import LockIcon from '@mui/icons-material/Lock';
+import FlashOnIcon from '@mui/icons-material/FlashOn';
+import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
+import Icon from '@mui/material/Icon';
 import config from '../../config.js';
 import download from '../../imgs/morsemessenger/download.png'
 import send from '../../imgs/morsemessenger/send.png'
 import group from '../../imgs/morsemessenger/group.png'
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 import Header from '../Header'
 
 const useStyles = theme =>({

@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@mui/styles';
 import reinhard from '../imgs/main_page/reinhard.jpg'
 import yangwenli from '../imgs/main_page/yangwenli.jpg'
 import Header from './Header.js'
