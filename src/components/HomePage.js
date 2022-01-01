@@ -124,7 +124,7 @@ class HomePage extends Component {
                   <ul>
                       <li className={classes.listItemSummary} style={textColor}>Hi! My name's Aaron Zhang. Translated and put together, it means <a style={textColor} href="https://en.wikipedia.org/wiki/Zhang_(surname)">Archer</a> of the <a style={textColor} href="https://en.wikipedia.org/wiki/Aaron_(given_name)">High Mountain</a>.</li>
                       <li className={classes.listItemSummary} style={textColor}>I'm a Fullstack Software Engineer who likes to make websites for ideas I think about at night.</li>
-                      <li className={classes.listItemSummary} style={textColor}>In my free time I like to play the piano, learn about history, watch Black and White movies, and sometimes play Minecraft for weeks at a time.</li>
+                      <li className={classes.listItemSummary} style={textColor}>In my free time I like to play the piano, learn about why things work, and swim</li>
                   </ul>
                 </fieldset>
               </Box>
@@ -138,8 +138,6 @@ class HomePage extends Component {
                     <ul>
                       <li className={classes.listItem}><a style={textColor} href="https://bit.ly/2YagH0o">Bring Back Old Messenger Emojis</a> 
                           <a className= {classes.icons} style={textColor} href="https://github.com/aaronzhang1234/bringbackmessengeremojis"><GitHubIcon fontSize="small"/></a></li>
-                      <li className={classes.listItem}><a style={textColor} href="https://bit.ly/3psCmPO">Money Printer</a> 
-                          <a className= {classes.icons} style={textColor} href="https://github.com/aaronzhang1234/stoplosingmoney"><GitHubIcon fontSize="small"/></a></li>
                     </ul>
                     <li className={classes.categoryItem} style={textColor}>Apps <AppleIcon fontSize="small"/></li>
                     <ul>
