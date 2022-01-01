@@ -120,7 +120,6 @@ const useStyles = theme =>({
         backgroundColor:"#d4ebf2"
     },
     backdrop: {
-        zIndex: theme.zIndex.drawer + 1,
         color: '#fff',
     },
     darkTextField:{
@@ -168,7 +167,7 @@ class MorseMessenger extends Component {
           <Header
             onSwitchNightMode={this.switchNightMode}
           />
-            <Grid className={firstGridStyle} justify="center" alignItems="center" container>
+            <Grid className={firstGridStyle} justifyContent="center" alignItems="center" container>
                 <Grid item xs={12} sm={6} md={4} align="center">
                     <Box style={{ width:"50%"}}>
                         <h1 className={classes.titleText} style={textColor} >Morse</h1>
@@ -184,7 +183,7 @@ class MorseMessenger extends Component {
                     <p className={classes.titleExplainer} style={ textColor}>Morse Messenger is a revolutionary application which truly tests the limits of online communication by removing the need see and hear</p>
                 </Grid>
             </Grid>
-            <Grid className={secondGridStyle} justify="center" alignItems="center" container>
+            <Grid className={secondGridStyle} justifyContent="center" alignItems="center" container>
                 <Grid item xs={12} sm={4} md={3} align="center">
                     <Box style={{display:"flex"}}>
                         <WifiIcon style={{...textColor,...{fontSize:"125px"}}}/>                        
@@ -213,13 +212,13 @@ class MorseMessenger extends Component {
                     </Box>
                 </Grid>
             </Grid>
-            <Grid className={firstGridStyle} justify="center" alignItems="center" container>
+            <Grid className={firstGridStyle} justifyContent="center" alignItems="center" container>
                 <Grid item xs={12} align="center">
                     <h1 style={{...textColor,...{fontSize:"75px"}}}  >How Does It Work?</h1>
                     <Divider style={{width:"50%"}}variant="middle"/>
                 </Grid>
             </Grid>
-            <Grid className={secondGridStyle} justify="center" alignItems="center" container>
+            <Grid className={secondGridStyle} justifyContent="center" alignItems="center" container>
                     <Grid item xs={6} sm={5} md={4} align="center">
                         <Box className={classes.stepBox}>
                             <h1 className={classes.stepNumber} style={ textColor} >1</h1>
@@ -230,7 +229,7 @@ class MorseMessenger extends Component {
                         <img style={{width:"40%"}}src={download}/>
                     </Grid>
             </Grid>
-            <Grid className={firstGridStyle} alignItems="center" justify="center" container>
+            <Grid className={firstGridStyle} alignItems="center" justifyContent="center" container>
                 <Grid item xs={6} sm={5} md={4} align="center">
                     <img style={{width:"40%"}} src={group}/>
                 </Grid>
@@ -241,7 +240,7 @@ class MorseMessenger extends Component {
                     </Box>
                 </Grid>
             </Grid>
-            <Grid className={secondGridStyle} justify="center" alignItems="center" container>
+            <Grid className={secondGridStyle} justifyContent="center" alignItems="center" container>
                 <Grid item xs={6} sm={5} md={4} align="center">
                     <Box className={classes.stepBox}>
                         <h1 className={classes.stepNumber} style={ textColor} >3</h1>
@@ -252,7 +251,7 @@ class MorseMessenger extends Component {
                     <img style={{width:"60%"}} src={send}/>
                 </Grid>
             </Grid>
-            <Grid id="tryitout" className={firstGridStyle} alignItems="center" justify="center" container>
+            <Grid id="tryitout" className={firstGridStyle} alignItems="center" justifyContent="center" container>
                 <Grid item xs={12} align="center">
                     {message_sent &&(
                         <Box className={error?classes.errorBox : classes.successBox}>
@@ -262,7 +261,7 @@ class MorseMessenger extends Component {
                     <fieldset style={{width:"50%"}}>
                         <form onSubmit={this.handleSubmit}>
                             <Box style={{display:"flex"}} m={2}>
-                                <Grid alignItems="center" justify="center" container>
+                                <Grid alignItems="center" justifyContent="center" container>
                                     <Grid item xs={6} sm={5} md={4}>
                                         <TextField className={textFieldStyle} required id="channelInput" label="Channel" variant="filled" />
                                     </Grid>
@@ -277,7 +276,7 @@ class MorseMessenger extends Component {
                     </fieldset>
                 </Grid>
             </Grid>
-            <Grid className={creditsGridStyle} alignItems="center" justify="center" container>
+            <Grid className={creditsGridStyle} alignItems="center" justifyContent="center" container>
                 <Grid item xs={12} align="center">
                     <h4  style={textColor}>Design By James Haggarty</h4>
                 </Grid>
