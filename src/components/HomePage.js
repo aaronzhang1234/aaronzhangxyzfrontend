@@ -1,8 +1,11 @@
 import React,{Component} from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import GitHubIcon from '@material-ui/icons/GitHub';
+import { withStyles } from '@mui/styles';
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import GoogleIcon from '@mui/icons-material/Google';
+import AppleIcon from '@mui/icons-material/Apple';
+import WebIcon from '@mui/icons-material/Web';
 import Header from './Header'
 
 const useStyles = theme =>({
@@ -63,8 +66,16 @@ const useStyles = theme =>({
     border:"1.5px solid",
     padding: ".5em 1em .5em 1em"  
   },
-  listItem:{
+  categoryItem:{
+    margin:"1em .5em 0em .5em",
+    fontSize:"1.5em",
+  },
+  listItemSummary:{
     margin:"1em .5em 1em .5em",
+    fontSize:"1.5em",
+  },
+  listItem:{
+    margin:"0em .5em 0em .5em",
     fontSize:"1.5em",
   },
   icons:{
@@ -111,9 +122,9 @@ class HomePage extends Component {
                 <fieldset className={fieldSetHomePageStyle}>
                   <legend className={legendHomePageStyle}>About Me</legend>
                   <ul>
-                      <li className={classes.listItem} style={textColor}>Hi! My name's Aaron Zhang. Translated and put together, it means <a style={textColor} href="https://en.wikipedia.org/wiki/Zhang_(surname)">Archer</a> of the <a style={textColor} href="https://en.wikipedia.org/wiki/Aaron_(given_name)">High Mountain</a>.</li>
-                      <li className={classes.listItem} style={textColor}>I'm a Fullstack Software Engineer who likes to make websites for ideas I think about at night.</li>
-                      <li className={classes.listItem} style={textColor}>In my free time I like to play the piano, learn about history, watch Black and White movies, and sometimes play Minecraft for weeks at a time.</li>
+                      <li className={classes.listItemSummary} style={textColor}>Hi! My name's Aaron Zhang. Translated and put together, it means <a style={textColor} href="https://en.wikipedia.org/wiki/Zhang_(surname)">Archer</a> of the <a style={textColor} href="https://en.wikipedia.org/wiki/Aaron_(given_name)">High Mountain</a>.</li>
+                      <li className={classes.listItemSummary} style={textColor}>I'm a Fullstack Software Engineer who likes to make websites for ideas I think about at night.</li>
+                      <li className={classes.listItemSummary} style={textColor}>In my free time I like to play the piano, learn about why things work, and swim</li>
                   </ul>
                 </fieldset>
               </Box>
@@ -123,11 +134,21 @@ class HomePage extends Component {
                 <fieldset className={fieldSetHomePageStyle}>
                   <legend className={legendHomePageStyle}>Side Projects</legend>
                   <ul>
-                      <li className={classes.listItem}><a style={textColor} href="/morsemessenger">Morse Messenger, Discrete Messaging</a> 
-                          <a className= {classes.icons} style={textColor} href="https://github.com/aaronzhang1234/morsemessengerapp"><GitHubIcon fontSize="small"/></a></li>
+                    <li className={classes.categoryItem} style={textColor}>Chrome Extensions <GoogleIcon fontSize="small"/></li>
+                    <ul>
                       <li className={classes.listItem}><a style={textColor} href="https://bit.ly/2YagH0o">Bring Back Old Messenger Emojis</a> 
                           <a className= {classes.icons} style={textColor} href="https://github.com/aaronzhang1234/bringbackmessengeremojis"><GitHubIcon fontSize="small"/></a></li>
+                    </ul>
+                    <li className={classes.categoryItem} style={textColor}>Apps <AppleIcon fontSize="small"/></li>
+                    <ul>
+                      <li className={classes.listItem}><a style={textColor} href="/morsemessenger">Morse Messenger, Discrete Messaging</a> 
+                          <a className= {classes.icons} style={textColor} href="https://github.com/aaronzhang1234/morsemessengerapp"><GitHubIcon fontSize="small"/></a></li>                      
+                    </ul>
+                    <li className={classes.categoryItem} style={textColor}>Websites <WebIcon fontSize="small"/></li>                      
+                    <ul>
                       <li className={classes.listItem}><a style={textColor} href="/ifyouinvestedin">If you invested in ...</a></li>
+
+                    </ul>
                   </ul> 
                 </fieldset>
               </Box>

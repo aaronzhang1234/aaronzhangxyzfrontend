@@ -2,10 +2,10 @@ import React,{Component} from 'react';
 import DatePicker from 'react-datepicker';
 import DropDown from 'react-dropdown';
 import moment from 'moment';
-import DateRangeIcon from '@material-ui/icons/DateRange';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import { withStyles } from '@mui/styles';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import 'react-datepicker/dist/react-datepicker.css'
 import 'react-dropdown/style.css';
 
