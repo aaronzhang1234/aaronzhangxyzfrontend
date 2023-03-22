@@ -1,7 +1,8 @@
 name: deploy-frontend
 on: 
   push:
-    - "actions"
+    branches:
+      "actions"
 jobs:
   deploy-frontend:
     runs-on: ubuntu-latest
