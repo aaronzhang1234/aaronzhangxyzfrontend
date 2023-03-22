@@ -2,6 +2,7 @@ name: deploy-frontend
 on:
   push:
     branches:
+      -actions
       -master
 jobs:
   deploy-frontend:
