@@ -1,9 +1,5 @@
 name: deploy-frontend
-on:
-  push:
-    branches:
-      -actions
-      -master
+on: [workflow_dispatch]
 jobs:
   deploy-frontend:
     runs-on: ubuntu-latest
