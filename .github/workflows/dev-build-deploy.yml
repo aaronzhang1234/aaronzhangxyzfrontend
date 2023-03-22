@@ -1,5 +1,7 @@
 name: deploy-frontend
-on: [workflow_dispatch]
+on: 
+  push:
+    - "actions"
 jobs:
   deploy-frontend:
     runs-on: ubuntu-latest
