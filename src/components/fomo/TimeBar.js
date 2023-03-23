@@ -131,7 +131,7 @@ class TimeBar extends Component{
         let from_date = date["value"]?date["value"]: date;
         let from_label = date["label"]?date["label"]:moment(date).format("MMMM Do YYYY");
         this.props.sendFrom(from_date);
-        if(this.state.from_date != null && from_date.getTime() != this.state.from_date.getTime()){
+        if(this.state.from_date != null && from_date.getTime() !== this.state.from_date.getTime()){
             this.setState({
                 to_date:null,
                 to_label:null

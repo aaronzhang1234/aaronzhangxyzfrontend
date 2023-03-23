@@ -46,7 +46,7 @@ class FourOFour extends Component {
           onSwitchNightMode={this.switchNightMode}
         />
         <h1 className={classes.errorText} style={textColor}>404 PAGE NOT FOUND</h1>
-        <img className={classes.errorImage} src={errorImage}></img>
+        <img className={classes.errorImage} src={errorImage} alt="404"></img>
         <h2 className={classes.errorText} style={textColor}>Chill here a bit. Then try again.</h2>
       </React.Fragment>
     );

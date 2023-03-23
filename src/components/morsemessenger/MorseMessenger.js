@@ -226,12 +226,12 @@ class MorseMessenger extends Component {
                         </Box>
                     </Grid>
                     <Grid item xs={6} sm={5} md={4} align="center">
-                        <img style={{width:"40%"}}src={download}/>
+                        <img style={{width:"40%"}}src={download} alt="represenation of download"/>
                     </Grid>
             </Grid>
             <Grid className={firstGridStyle} alignItems="center" justifyContent="center" container>
                 <Grid item xs={6} sm={5} md={4} align="center">
-                    <img style={{width:"40%"}} src={group}/>
+                    <img style={{width:"40%"}} src={group} alt="join a group"/>
                 </Grid>
                 <Grid item xs={6} sm={5} md={4} align="center">
                     <Box className={classes.stepBox}>
@@ -248,7 +248,7 @@ class MorseMessenger extends Component {
                     </Box>
                 </Grid>
                 <Grid item xs={6} sm={5} md={4} align="center">
-                    <img style={{width:"60%"}} src={send}/>
+                    <img style={{width:"60%"}} src={send} alt="send a message"/>
                 </Grid>
             </Grid>
             <Grid id="tryitout" className={firstGridStyle} alignItems="center" justifyContent="center" container>

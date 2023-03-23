@@ -175,10 +175,10 @@ class FOMO extends Component {
                 size="9"
                 value={this.state.ticker}/>
               <h1 className={classes.titles} style={textColor}> WORTH NOW? </h1>
-              {(this.state.amt==undefined || this.state.ticker=="") &&
+              {(this.state.amt===undefined || this.state.ticker==="") &&
                   <h1 style={textColor}>Please pick a valid amount and stock</h1>
               }
-              {this.state.amt!=undefined && this.state.ticker!="" &&
+              {this.state.amt!==undefined && this.state.ticker!=="" &&
                 <Button className={buttonStyle} type="submit" variant="contained" color="primary" onClick={this.getStock} >
                   SHOW ME THE MONEY
                 </Button>
@@ -186,7 +186,7 @@ class FOMO extends Component {
             </div>
           </form>
           <div className={classes.footerStyle}>
-            <a style={{alignSelf:"flex-end"}}href="https://www.producthunt.com/posts/if-you-invested-in?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-if-you-invested-in" target="_blank">
+            <a style={{alignSelf:"flex-end"}}href="https://www.producthunt.com/posts/if-you-invested-in?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-if-you-invested-in" target="_blank" rel="noreferrer">
               <img src={"https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=286355&theme="+productHuntTheme} alt="If You Invested In.... - Compare stock prices on different dates | Product Hunt" style={{width:"250px", height:"54px"}} width="250" height="54" />
             </a>
           </div>
