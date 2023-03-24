@@ -10,9 +10,6 @@ import FourOFour from './components/FourOFour.js'
 import MorseMessenger from './components/morsemessenger/MorseMessenger.js'
 
 class App extends Component {
-  constructor(props){
-    super(props);
-  }
   render(){
     return(
          <Router>

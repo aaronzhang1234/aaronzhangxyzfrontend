@@ -48,7 +48,7 @@ class Results extends Component{
         }
     }
     componentDidUpdate=()=>{
-        if(this.props.nightModeChecked!=this.state.nightModeChecked){
+        if(this.props.nightModeChecked!==this.state.nightModeChecked){
             this.setState({
                 nightModeChecked:this.props.nightModeChecked
             })
@@ -87,7 +87,7 @@ class Results extends Component{
                                          Math.min.apply(null, dates.map(function(x){return stock_data[x]}));
 
         let extreme_match = dates.filter(function(y){return stock_data[y] === extreme_stock_price});    
-        if(extreme_match[0]==undefined){
+        if(extreme_match[0]===undefined){
             return current_date
         }
         return extreme_match[0];
@@ -167,12 +167,12 @@ class Results extends Component{
                      <h1 style={{...textColor,...{fontSize:"50px", marginBottom:"0", marginTop:"5px"}}}>You would have:</h1>
                      <h1 style={{...textColor,...{fontSize:"40px"}}}>{amt_string} share(s) worth {total_money_formatted}</h1>
                      <Box justifyContent="center" alignItems="center" style={{display:"flex"}}>
-                        <img className="reaction-images" src={reaction_image}/> 
+                        <img className="reaction-images" src={reaction_image} alt="I hope you have a good reaction here"/> 
                         <div>
                             <h1 style={textColor}>Percentage {gain_loss} : {percentage_string}% </h1> 
                             <h1 style={textColor}>Monetary {gain_loss} : {money_gained}</h1>
                         </div>
-                        <img className="reaction-images" src={reaction_image}/>
+                        <img className="reaction-images" src={reaction_image} alt="I hope you have a good reaction here part 2"/>
                      </Box>
                 </div>
             )
@@ -264,7 +264,7 @@ class Results extends Component{
         let dates = Object.keys(stock_data);
         let match_index = -1;
         for(let i = 0; i<dates.length; i++){
-            if(dates[i] == date_string){
+            if(dates[i] === date_string){
                 match_index = i;
                 break;
             }

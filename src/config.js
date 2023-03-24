@@ -8,6 +8,8 @@ const prod={
 const config = process.env.REACT_APP_STAGE==="prod"
     ?prod:dev;
 
-export default{
+const default_list = {
     config
 }
+
+export default default_list
