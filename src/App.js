@@ -8,6 +8,7 @@ import HomePage from './components/HomePage.js';
 import FOMO from './components/fomo/FOMO.js';
 import FourOFour from './components/FourOFour.js'
 import MorseMessenger from './components/morsemessenger/MorseMessenger.js'
+import Mapbox from './components/mapbox/Mapbox.js';
 
 class App extends Component {
   render(){
@@ -16,6 +17,7 @@ class App extends Component {
           <Routes>
             <Route path="*" element={<FourOFour/>}/>
             <Route path="/" element={<HomePage/>}/>
+            <Route path="/testworld" element={<Mapbox/>}/>
             <Route path="/morsemessenger" element={<MorseMessenger/>}/>
             <Route path="/ifyouinvestedin" element={<FOMO/>}/>
           </Routes>
