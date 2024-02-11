@@ -8,6 +8,7 @@
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.5",
     "@mui/styles": "^5.2.3",
+    "@mui/system": "^5.15.9",
     "accounting": "^0.4.1",
     "axios": "^0.24.0",
     "dateformat": "^5.0.2",
