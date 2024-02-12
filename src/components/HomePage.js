@@ -3,8 +3,6 @@ import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import GoogleIcon from '@mui/icons-material/Google';
-import AppleIcon from '@mui/icons-material/Apple';
-import WebIcon from '@mui/icons-material/Web';
 import { styled } from '@mui/system'
 import Header from './Header'
 

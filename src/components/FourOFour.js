@@ -30,7 +30,6 @@ class FourOFour extends Component {
   }
 
   render() {
-    const { classes } = this.props
     let errorImage = this.state.nightModeChecked ? reinhard : yangwenli
     let backgroundStyle = this.state.nightModeChecked ? "rgb(24, 26, 27)" : "white"
     document.body.style.backgroundColor = backgroundStyle
