@@ -6,7 +6,7 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.9",
-    "@mui/material": "^5.15.9", 
+    "@mui/material": "^5.15.9",
     "@mui/system": "^5.15.9",
     "accounting": "^0.4.1",
     "axios": "^1.6.7",
@@ -46,5 +46,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://cat-fact.herokuapp.com/"
+  "proxy": "https://cat-fact.herokuapp.com/",
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+  }
 }
