@@ -1,56 +1,50 @@
-import React,{Component} from 'react';
-import { withStyles } from '@mui/styles';
+import React, { Component } from 'react';
 import reinhard from '../imgs/main_page/reinhard.jpg'
 import yangwenli from '../imgs/main_page/yangwenli.jpg'
 import Header from './Header.js'
+import {styled} from '@mui/system'
 
-const useStyles = theme =>({
-  errorText:{
-    textAlign:"center"
-  },
-  errorImage:{
-    display:"block",
-    marginLeft:"auto",
-    marginRight:"auto",
-    width:"25%"
-  }
+const StyledErrorText = styled('h1')(props=>({
+  color: props.isNightMode? "white" : "black",
+  textAlign: "center" 
+}))
+
+const StyledErrorImage = styled('img')({
+  display: "block",
+  marginLeft: "auto",
+  marginRight: "auto",
+  width: "25%"
 })
+
 class FourOFour extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      nightModeChecked:false
+      nightModeChecked: false
     }
   }
-  switchNightMode=(nightModeIndicator)=>{
+  switchNightMode = (nightModeIndicator) => {
     this.setState({
-      nightModeChecked:nightModeIndicator
+      nightModeChecked: nightModeIndicator
     })
   }
-  
-  render(){
-    const {classes} = this.props
-    let errorImage = this.state.nightModeChecked?reinhard:yangwenli
-    let backgroundStyle = this.state.nightModeChecked?"rgb(24, 26, 27)":"white"
-    document.body.style.backgroundColor=backgroundStyle
-    let darkText = {
-        color:"white"
-    }
-    let lightText={
-        color:"black"
-    }
-    let textColor = this.state.nightModeChecked?darkText:lightText
-    return(
+
+  render() {
+    const { classes } = this.props
+    let errorImage = this.state.nightModeChecked ? reinhard : yangwenli
+    let backgroundStyle = this.state.nightModeChecked ? "rgb(24, 26, 27)" : "white"
+    document.body.style.backgroundColor = backgroundStyle
+    return (
       <React.Fragment>
         <Header
           onSwitchNightMode={this.switchNightMode}
         />
-        <h1 className={classes.errorText} style={textColor}>404 PAGE NOT FOUND</h1>
-        <img className={classes.errorImage} src={errorImage} alt="404"></img>
-        <h2 className={classes.errorText} style={textColor}>Chill here a bit. Then try again.</h2>
+        <StyledErrorText isNightMode={this.state.nightModeChecked}>404 PAGE NOT FOUND</StyledErrorText>
+        <StyledErrorImage src={errorImage} alt="404"></StyledErrorImage>
+        <StyledErrorText isNightMode={this.state.nightModeChecked}>Chill here a bit. Then try again.</StyledErrorText>
       </React.Fragment>
     );
   }
 }
 
-export default withStyles(useStyles)(FourOFour);
+export default FourOFour;
