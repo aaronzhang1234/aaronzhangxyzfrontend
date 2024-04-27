@@ -6,21 +6,20 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.9",
-    "@mui/material": "^5.15.9", 
+    "@mui/material": "^5.15.9",
     "@mui/system": "^5.15.9",
-    "local-storage": "^2.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.0",
-    "react-scripts": "^5.0.1"
+    "@types/node": "^20.12.7",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "next": "^14.2.3",
+    "react": "^18.3.1",
+    "typescript": "^5.4.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start-prod": "REACT_APP_STAGE=prod react-scripts start",
-    "build": "react-scripts build",
-    "build-prod": "REACT_APP_STAGE=prod react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,6 +38,6 @@
   },
   "proxy": "http://localhost:3000",
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "eslint": "^9.1.1"
   }
 }
